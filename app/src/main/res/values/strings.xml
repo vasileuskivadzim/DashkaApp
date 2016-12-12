@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Dashka AppV1</string>
+
+    <string name="choose_category_caption">Выберите категорию</string>
+    <string name="nature_btn_title">Природа</string>
+    <string name="family_btn_title">Семья</string>
+    <string name="house_btn_title">Дом</string>
+    <string name="transport_btn_title">Транспорт</string>
+    <string name="toy_btn_title">Игрушки</string>
+    <string name="choose_exercise_caption">Выберите уражнение</string>
+
+    <string name="toast_message_success">Молодец</string>
+    <string name="toast_message_fail">Попробуй ещё раз</string>
+
+</resources>
