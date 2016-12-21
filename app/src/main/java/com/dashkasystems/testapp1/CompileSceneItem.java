@@ -12,11 +12,11 @@ import android.util.Size;
 public class CompileSceneItem {
     public @DrawableRes int drawable;
     public String name;
-    public Point location;
-    public Size size;
+    public Point[] location;
+    public Size[] size;
 
 
-    public CompileSceneItem(int drawableId, String name, Point location, Size size) {
+    public CompileSceneItem(int drawableId, String name, Point[] location, Size[] size) {
         this.drawable = drawableId;
         this.name = name;
         this.location = location;

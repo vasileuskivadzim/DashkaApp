@@ -21,7 +21,8 @@
         <activity android:name=".RelateExerciseActivity" />
         <activity android:name=".ReorderWordsExerciseActivity" />
         <activity android:name=".ShapeColoringExerciseActivity" />
-        <activity android:name=".CompileSceneExerciseActivity"></activity>
+        <activity android:name=".CompileSceneExerciseActivity" />
+        <activity android:name=".CompileSceneExercisePrepareActivity"></activity>
     </application>
 
 </manifest>
