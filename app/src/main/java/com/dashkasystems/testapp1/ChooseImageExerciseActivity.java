@@ -23,12 +23,13 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_image_exercise);
 
-        String exerciseTitle = getIntent().getStringExtra("CHOSEN_EXERCISE_INTENT_KEY");
+        //String exerciseTitle = getIntent().getStringExtra("CHOSEN_EXERCISE_INTENT_KEY");
 
         TextView captionTextView = (TextView) findViewById(R.id.choose_image_exercise_caption);
-        captionTextView.setText(exerciseTitle);
+        //captionTextView.setText(exerciseTitle);
+        captionTextView.setText("Послушай и выбери картинку");
 
-        exercise = new ChooseImageExercise();
+        exercise = ExerciseFactory.chooseImageExercise(4);
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.choose_image_exersize_speak_button);
         vocalizeBtn.setOnClickListener(this);
@@ -51,20 +52,22 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
         layoutParams.setMargins(10, 10, 10, 0);
 
         int picturesCount = this.exercise.namedPictures.length;
-        int rowCount = picturesCount / colCount;
+        int rowCount = (int) Math.ceil( picturesCount / (double) colCount);
 
         for(int row = 0; row < rowCount; row++) {
             TableRow newRow = new TableRow(this);
             for (int col = 0; col < colCount; col++) {
                 int index = row * colCount + col;
 
-                ImageView image = new ImageView(this);
-                image.setImageResource(this.exercise.namedPictures[index].picture);
-                image.setLayoutParams(layoutParams);
-                image.setOnTouchListener(this);
-                image.setId(index);
+                if (index < picturesCount) {
+                    ImageView image = new ImageView(this);
+                    image.setImageResource(this.exercise.namedPictures[index].picture);
+                    image.setLayoutParams(layoutParams);
+                    image.setOnTouchListener(this);
+                    image.setId(index);
 
-                newRow.addView(image, col);
+                    newRow.addView(image, col);
+                }
             }
 
             table.addView(newRow, row);

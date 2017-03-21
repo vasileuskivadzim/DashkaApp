@@ -15,13 +15,8 @@ public class ChooseImageExercise {
     public int getRightAnswerIndex() { return this.rightAnswerIndex; }
 
 
-    public ChooseImageExercise() {
-        this.namedPictures = new NamedPicture[4];
-        this.namedPictures[0] = new NamedPicture("Лев", R.drawable.lion);
-        this.namedPictures[1] = new NamedPicture("Oлень", R.drawable.deer);
-        this.namedPictures[2] = new NamedPicture("Кролик", R.drawable.rabbit);
-        this.namedPictures[3] = new NamedPicture("Волк", R.drawable.wolf);
-
+    public ChooseImageExercise(NamedPicture[] pictures) {
+        this.namedPictures = pictures;
         this.mutate();
         this.rightAnswerIndex = this.newRightAnswer();
     }
