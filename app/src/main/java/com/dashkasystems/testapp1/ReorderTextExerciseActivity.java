@@ -7,6 +7,7 @@ import android.support.v4.util.Pair;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.woxthebox.draglistview.DragListView;
 
@@ -37,9 +38,12 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
         dragListView.setLayoutManager(new LinearLayoutManager(dragListView.getContext()));
 
         ItemAdapter listAdapter = new ItemAdapter(this.mItemArray, R.layout.list_item, R.id.text, false);
+        listAdapter.fontSize = 18;
         dragListView.setAdapter(listAdapter, true);
         dragListView.setCanDragHorizontally(false);
 
+        TextView titleLabel = (TextView) findViewById(R.id.textView);
+        titleLabel.setText(exercise.getTitle());
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.reorder_text_exercise_speak_btn);
         vocalizeBtn.setOnClickListener(this);
@@ -49,13 +53,7 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
     }
 
     private void setupExercise() {
-        this.exercise = new ReorderTextExercise(
-                "Дядя Семён ехал из города домой."+
-                " С ним была собака Жучка. Вдруг из леса выскочили волки. "+
-                "Жучка испугалась и прыгнула в сани. У дяди Семёна была хорошая лошадь. "+
-                "Она тоже испугалась и быстро помчалась по дороге. Деревня была близко. "+
-                "Показались огни в окнах. Волки отстали. " +
-                "Умная лошадь спасла дядю Семена и Жучку.");
+        this.exercise = ExerciseFactory.reorderTextExercise(0);
     }
 
     @Override
