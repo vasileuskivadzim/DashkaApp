@@ -8,21 +8,30 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChooseExerciseActivity" />
-        <activity android:name=".ChooseImageExerciseActivity" />
-        <activity android:name=".ReorderTextExerciseActivity" />
-        <activity android:name=".RelateExerciseActivity" />
-        <activity android:name=".ReorderWordsExerciseActivity" />
-        <activity android:name=".ShapeColoringExerciseActivity" />
-        <activity android:name=".CompileSceneExerciseActivity" />
-        <activity android:name=".CompileSceneExercisePrepareActivity"></activity>
+        <activity android:name=".ChooseExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ChooseImageExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ReorderTextExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RelateExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ReorderWordsExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ShapeColoringExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CompileSceneExerciseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".CompileSceneExercisePrepareActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
