@@ -3,6 +3,7 @@ package com.dashkasystems.testapp1;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.Shape;
 import android.support.annotation.ColorRes;
+import android.util.Log;
 
 /**
  * Created by pandasystems on 11/27/16.
@@ -14,32 +15,75 @@ public class ShapeColoringExercise {
 
     public @ColorRes int[] colors;
     public Shapes[] shapes;
+    private String[] shapeNames;
+    private String[] colorNames;
 
-    public int[] shuffledIndexes;
+    private int[] shuffledShapesIndexes;
+    private int[] shuffledColorsIndexes;
+    private boolean[] rightColoring;
 
 
-    public ShapeColoringExercise(Shapes[] shapes, @ColorRes int[] colors){
+    public ShapeColoringExercise(Shapes[] shapes, String[] shapeNames, @ColorRes int[] colors, String[] colorNames){
         this.colors = colors;
         this.shapes = shapes;
+        this.shapeNames = shapeNames;
+        this.colorNames = colorNames;
 
         this.formIndexes();
+        this.initColoring();
         this.mutate();
     }
 
     public void formIndexes() {
-        shuffledIndexes = new int[shapes.length];
+        shuffledShapesIndexes = new int[shapes.length];
+        shuffledColorsIndexes = new int[shapes.length];
         for (int i = 0; i < shapes.length; i++) {
-            shuffledIndexes[i] = i;
+            shuffledShapesIndexes[i] = i;
+            shuffledColorsIndexes[i] = i;
         }
     }
 
-    public void mutate() {
-        RandomHelper.shuffleIndexArray(this.shuffledIndexes);
+    public void initColoring() {
+        rightColoring = new boolean[shapes.length];
+        for (int i = 0; i < shapes.length; i++) {
+            rightColoring[i] = false;
+        }
     }
 
+
+    public void mutate() {
+        RandomHelper.shuffleIndexArray(this.shuffledColorsIndexes);
+        RandomHelper.shuffleIndexArray(this.shuffledShapesIndexes);
+    }
+
+    public boolean isRightColored() {
+        for (int i = 0; i < this.rightColoring.length; i++) {
+            if (!this.rightColoring[i]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public String textAtIndex(int index) {
+        int shuffledShapeIndex = this.shuffledShapesIndexes[index];
+        String shapeName = this.shapeNames[shuffledShapeIndex];
+        int trueColorIndex = this.shuffledColorsIndexes[index];
+        String colorName = this.colorNames[trueColorIndex];
+        return colorName + " " + shapeName;
+    }
+
+
+    public void drawShapeAtIndex(int index, int color){
+        int trueColorIndex = this.shuffledColorsIndexes[index];
+        int trueColor = this.colors[trueColorIndex];
+        this.rightColoring[index] = (color == trueColor);
+    }
+
+
     public ShapeDrawable shapeAtIndex(int index, int width, int height, int color, int borderColor) {
-        int shuffledIndex = this.shuffledIndexes[index];
-        Shapes shape = this.shapes[shuffledIndex];
+        int shuffledShapeIndex = this.shuffledShapesIndexes[index];
+        Shapes shape = this.shapes[shuffledShapeIndex];
         switch (shape) {
             case HEXAGON:
                 return ShapeFactory.drawHexagon(width, height, color, borderColor);
@@ -56,7 +100,6 @@ public class ShapeColoringExercise {
             default:
                 return null;
         }
-
     }
 
 }

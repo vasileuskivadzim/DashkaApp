@@ -1,5 +1,6 @@
 package com.dashkasystems.testapp1;
 
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 
 import java.util.HashSet;
@@ -47,10 +48,31 @@ public class ExerciseFactory {
         return new ChooseImageExercise(namedPictures);
     }
 
+
+
+
+
     private static String[] sentences = {"Кошка съела воробья и теперь не голодна."};
 
     public static ReorderWordsExercise reorderWordsExercise(int index) {
         return new ReorderWordsExercise(sentences[index]);
+    }
+
+
+
+    private static ShapeColoringExercise.Shapes[] shapes = {ShapeColoringExercise.Shapes.CIRCLE,
+            ShapeColoringExercise.Shapes.SQUARE, ShapeColoringExercise.Shapes.TRIANGLE,
+            ShapeColoringExercise.Shapes.STAR, ShapeColoringExercise.Shapes.RECTANGLE,
+            ShapeColoringExercise.Shapes.HEXAGON };
+    private static String[] shapeNames = {"Круг", "Квадрат", "Треугольник", "Звезда", "Прямоугольник", "Шестиугольник"};
+    private static String[] colorNames = {"Красный", "Оранжевый", "Жёлтый", "Зелёный", "Голубой", "Синий"};
+    @ColorRes
+    private static int[] colors = {R.color.red, R.color.orange, R.color.yellow,
+            R.color.green, R.color.blue, R.color.darkBlue};
+
+
+    public static ShapeColoringExercise shapeColoringExercise() {
+        return new ShapeColoringExercise(shapes, shapeNames, colors, colorNames);
     }
 
 
