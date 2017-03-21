@@ -47,6 +47,13 @@ public class ExerciseFactory {
         return new ChooseImageExercise(namedPictures);
     }
 
+    private static String[] sentences = {"Кошка съела воробья и теперь не голодна."};
+
+    public static ReorderWordsExercise reorderWordsExercise(int index) {
+        return new ReorderWordsExercise(sentences[index]);
+    }
+
+
 
 
 }

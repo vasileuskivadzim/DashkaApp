@@ -40,10 +40,14 @@ public class ReorderWordsExerciseActivity extends AppCompatActivity implements V
             mItemArray.add(new Pair<>(Long.valueOf(exercise.shuffledIndexes[i]), exercise.words[exercise.shuffledIndexes[i]]));
         }
         gridListView = (DragListView) findViewById(R.id.reorder_words_list_view);
-        gridListView.setLayoutManager(new GridLayoutManager(this, 4));
+        gridListView.setLayoutManager(new GridLayoutManager(this, 3));
 
         ItemAdapter listAdapter = new ItemAdapter(mItemArray, R.layout.column_item, R.id.item_layout, false);
+        listAdapter.fontSize = 20;
         gridListView.setAdapter(listAdapter, true);
+
+        TextView captionLabel = (TextView) findViewById(R.id.textView);
+        captionLabel.setText(getIntent().getStringExtra("CHOSEN_EXERCISE_INTENT_KEY"));
 
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.reorder_words_exercise_speak_btn);
@@ -55,7 +59,7 @@ public class ReorderWordsExerciseActivity extends AppCompatActivity implements V
     }
 
     protected void setupExercise() {
-        this.exercise = new ReorderWordsExercise("Кошка съела воробья и теперь не голодна.");
+        this.exercise = ExerciseFactory.reorderWordsExercise(0);
     }
 
     @Override
