@@ -17,6 +17,7 @@ import android.util.Size;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -47,72 +48,70 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
         this.setupExercise();
         this.setupMainImage();
         this.setupSelectableItems();
-        this.setupTargetViews();
+        this.setUpTreeObserver();
+    }
+
+    private void setUpTreeObserver() {
+        ViewTreeObserver viewTreeObserver = mainImageView.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    mainImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    int viewWidth = mainImageView.getWidth();
+                    int viewHeight = mainImageView.getHeight();
+                    exercise.setMainSceneSize(new Size(viewWidth, viewHeight));
+                    setupTargetViews();
+                }
+            });
+        }
     }
 
     private void setupExercise() {
-        Point[] emptyOrigin = new Point[0];
-        Size[] emptySize = new Size[0];
+        DARect[] emptyFrame = new DARect[0];
 
         //first step
-        Point[] oakOrigin = new Point[1];
-        oakOrigin[0] = new Point(0, 200);
-        Size[] oakSize = new Size[1];
-        oakSize[0] = new Size((int) (200*3.2), (int)(278*3.2));
-        CompileSceneItem item1 = new CompileSceneItem(R.drawable.oak, "OAK", oakOrigin, oakSize);
-        CompileSceneItem item2 = new CompileSceneItem(R.drawable.spruce, "SPRUCE", emptyOrigin, emptySize);
+        DARect[] oakFrame = new DARect[1];
+        oakFrame[0] = new DARect(0, 200, 200*3.2, 278*3.2);
+        CompileSceneItem item1 = new CompileSceneItem(R.drawable.oak, "OAK", oakFrame);
+        CompileSceneItem item2 = new CompileSceneItem(R.drawable.spruce, "SPRUCE", emptyFrame);
 
         //second step
-        Point[] basketOrigin = new Point[2];
-        basketOrigin[0] = new Point(600, 850);
-        basketOrigin[1] = new Point(890, 850);
-        Size[] basketSize = new Size[2];
-        basketSize[0] = new Size(170, 170);
-        basketSize[1] = new Size(170, 170);
-        CompileSceneItem item3 = new CompileSceneItem(R.drawable.portfolio, "PORTFOLIO", emptyOrigin, emptySize);
-        CompileSceneItem item4 = new CompileSceneItem(R.drawable.basket, "BASKET", basketOrigin, basketSize);
+        DARect[] basketFrames = new DARect[2];
+        basketFrames[0] = new DARect(600, 850, 170, 170);
+        basketFrames[1] = new DARect(890, 850, 170, 170);
+        CompileSceneItem item3 = new CompileSceneItem(R.drawable.portfolio, "PORTFOLIO", emptyFrame);
+        CompileSceneItem item4 = new CompileSceneItem(R.drawable.basket, "BASKET", basketFrames);
 
         //third step
-        Point[] mushroomOrigin = new Point[6];
-        mushroomOrigin[0] = new Point(600, 860);
-        mushroomOrigin[1] = new Point(625, 860);
-        mushroomOrigin[2] = new Point(650, 860);
-        mushroomOrigin[3] = new Point(675, 860);
-        mushroomOrigin[4] = new Point(890, 860);
-        mushroomOrigin[5] = new Point(940, 860);
-        Size[] mushroomSize = new Size[6];
-        mushroomSize[0] = new Size((int) (304/3),(int) (352/3));
-        mushroomSize[1] = new Size((int) (304/3),(int) (352/3));
-        mushroomSize[2] = new Size((int) (304/3),(int) (352/3));
-        mushroomSize[3] = new Size((int) (304/3),(int) (352/3));
-        mushroomSize[4] = new Size((int) (304/3),(int) (352/3));
-        mushroomSize[5] = new Size((int) (304/3),(int) (352/3));
-        CompileSceneItem item5 = new CompileSceneItem(R.drawable.cone, "CONE", emptyOrigin, emptySize);
-        CompileSceneItem item6 = new CompileSceneItem(R.drawable.mushroom, "MUSHROOM", mushroomOrigin, mushroomSize);
+        DARect[] mushroomFrames = new DARect[6];
+        mushroomFrames[0] = new DARect(600, 860, 304/3, 352/3);
+        mushroomFrames[1] = new DARect(625, 860, 304/3, 352/3);
+        mushroomFrames[2] = new DARect(650, 860, 304/3, 352/3);
+        mushroomFrames[3] = new DARect(675, 860, 304/3, 352/3);
+        mushroomFrames[4] = new DARect(890, 860, 304/3, 352/3);
+        mushroomFrames[5] = new DARect(940, 860, 304/3, 352/3);
+
+        CompileSceneItem item5 = new CompileSceneItem(R.drawable.cone, "CONE", emptyFrame);
+        CompileSceneItem item6 = new CompileSceneItem(R.drawable.mushroom, "MUSHROOM", mushroomFrames);
 
         //fourth step
-        Point[] squirrelOrigin = new Point[1];
-        squirrelOrigin[0] = new Point(150, 720);
-        Size[] squirrelSize = new Size[1];
-        squirrelSize[0] = new Size((int) (372*0.4),(int) (378*0.4));
-        CompileSceneItem item7 = new CompileSceneItem(R.drawable.squirrel, "SQUIRREL", squirrelOrigin, squirrelSize);
-        CompileSceneItem item8 = new CompileSceneItem(R.drawable.sparrow, "SPARROW", emptyOrigin, emptySize);
+        DARect[] squirrelFrame = new DARect[1];
+        squirrelFrame[0] = new DARect(150, 720, 372*0.4, 378*0.4);
+        CompileSceneItem item7 = new CompileSceneItem(R.drawable.squirrel, "SQUIRREL", squirrelFrame);
+        CompileSceneItem item8 = new CompileSceneItem(R.drawable.sparrow, "SPARROW", emptyFrame);
 
         //fifth step
-        Point[] nutOrigin = new Point[1];
-        nutOrigin[0] = new Point(269, 773);
-        Size[] nutSize = new Size[1];
-        nutSize[0] = new Size((int) (280*0.2),(int) (256*0.2));
-        CompileSceneItem item9 = new CompileSceneItem(R.drawable.nut, "NUT", nutOrigin, nutSize);
-        CompileSceneItem item10 = new CompileSceneItem(R.drawable.cone, "CONE", emptyOrigin, emptySize);
+        DARect[] nutFrame = new DARect[1];
+        nutFrame[0] = new DARect(269, 773, 280*0.2, 256*0.2);
+        CompileSceneItem item9 = new CompileSceneItem(R.drawable.nut, "NUT", nutFrame);
+        CompileSceneItem item10 = new CompileSceneItem(R.drawable.cone, "CONE", emptyFrame);
 
         //sixth step
-        Point[] woodpeckerOrigin = new Point[1];
-        woodpeckerOrigin[0] = new Point(320, 405);
-        Size[] woodpeckerSize = new Size[1];
-        woodpeckerSize[0] = new Size((int) (342*0.4),(int) (582*0.4));
-        CompileSceneItem item11 = new CompileSceneItem(R.drawable.sparrow, "SPARROW", emptyOrigin, emptySize);
-        CompileSceneItem item12 = new CompileSceneItem(R.drawable.woodpecker, "WOODPECKER", woodpeckerOrigin, woodpeckerSize);
+        DARect[] woodpeckerFrame = new DARect[1];
+        woodpeckerFrame[0] = new DARect(320, 405, 342*0.4, 582*0.4);
+        CompileSceneItem item11 = new CompileSceneItem(R.drawable.sparrow, "SPARROW", emptyFrame);
+        CompileSceneItem item12 = new CompileSceneItem(R.drawable.woodpecker, "WOODPECKER", woodpeckerFrame);
 
 
         CompileSceneItem[][] items = {{item1, item2},
@@ -123,7 +122,7 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
                                     {item11, item12}};
         @DrawableRes int mainImage = R.drawable.boywithgirl;
         this.exercise = new CompileSceneExercise(items, mainImage);
-
+        this.exercise.setNormalizatorSize(new Size(1080, 1284));
     }
 
 
@@ -158,12 +157,13 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
     protected void setupTargetViews() {
         int itemsCount = exercise.sceneItems[exerciseStep].length;
         for (int i = 0; i < itemsCount; i++) {
-            for (int j = 0; j < exercise.sceneItems[exerciseStep][i].location.length; j++) {
-                Point location = exercise.sceneItems[exerciseStep][i].location[j];
-                Size size = exercise.sceneItems[exerciseStep][i].size[j];
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.getWidth(), size.getHeight());
-                layoutParams.leftMargin = location.x;
-                layoutParams.topMargin = location.y;
+            for (int j = 0; j < exercise.sceneItems[exerciseStep][i].frames.length; j++) {
+                DARect frame = exercise.getFrameForStep(exerciseStep, i, j);
+                DAPoint location = frame.origin;
+                DASize size = frame.size;
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.intWidth(), size.intHeight());
+                layoutParams.leftMargin = location.intX();
+                layoutParams.topMargin = location.intY();
 
                 ImageView imageView = new ImageView(this);
                 imageView.setLayoutParams(layoutParams);
@@ -266,7 +266,7 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
                 int possibleItemsToInsert = 0;
                 int itemsCount = this.exercise.sceneItems[exerciseStep].length;
                 for (int i = 0; i < itemsCount; i++) {
-                    possibleItemsToInsert += this.exercise.sceneItems[exerciseStep][i].location.length;
+                    possibleItemsToInsert += this.exercise.sceneItems[exerciseStep][i].frames.length;
                 }
                 if (itemsInsertedOnCurrentStep >= possibleItemsToInsert) {
                     itemsInsertedOnCurrentStep = 0;
