@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Large Text"
-        android:id="@+id/textView"
+        android:id="@+id/titleTextView"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -43,7 +43,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/titleTextView"
         android:layout_above="@+id/relate_exercise_check_btn"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true">

@@ -1,7 +1,6 @@
 package com.dashkasystems.testapp1;
 
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.Shape;
 import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,7 +37,7 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
         this.configurePaletteView();
 
 
-        TextView captionLabel = (TextView) findViewById(R.id.textView);
+        TextView captionLabel = (TextView) findViewById(R.id.titleTextView);
         captionLabel.setText(getIntent().getStringExtra("CHOSEN_EXERCISE_INTENT_KEY"));
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.speakBtn);

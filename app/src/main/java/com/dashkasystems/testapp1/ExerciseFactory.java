@@ -52,7 +52,9 @@ public class ExerciseFactory {
 
 
 
-    private static String[] sentences = {"Кошка съела воробья и теперь не голодна."};
+    private static String[] sentences = {"Кошка съела воробья и теперь не голодна.",
+                            "Довольно длинное предложение с фанстастичеси предлиннющими словами и несколькими словами ми-ми-ми"};
+
 
     public static ReorderWordsExercise reorderWordsExercise(int index) {
         return new ReorderWordsExercise(sentences[index]);

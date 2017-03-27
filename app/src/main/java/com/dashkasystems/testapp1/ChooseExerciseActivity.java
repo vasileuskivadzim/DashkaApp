@@ -57,7 +57,12 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
             Intent intent = new Intent(this, CompileSceneExerciseActivity.class);
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);
-        } else {
+        } else if (position == 6) {
+            Intent intent = new Intent(this, ReorderWordsTapableExerciseActivity.class);
+            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+            this.startActivity(intent);
+        }
+        else {
             Intent intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);

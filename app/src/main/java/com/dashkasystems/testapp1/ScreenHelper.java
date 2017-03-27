@@ -17,4 +17,9 @@ public class ScreenHelper {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         return displayMetrics.widthPixels ;/// displayMetrics.density;
     }
+
+    public static float getDPWidth(Context context) {
+        DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
+        return displayMetrics.widthPixels / displayMetrics.density;
+    }
 }

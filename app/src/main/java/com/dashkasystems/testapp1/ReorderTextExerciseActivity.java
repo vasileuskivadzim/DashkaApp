@@ -42,7 +42,7 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
         dragListView.setAdapter(listAdapter, true);
         dragListView.setCanDragHorizontally(false);
 
-        TextView titleLabel = (TextView) findViewById(R.id.textView);
+        TextView titleLabel = (TextView) findViewById(R.id.titleTextView);
         titleLabel.setText(exercise.getTitle());
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.reorder_text_exercise_speak_btn);
