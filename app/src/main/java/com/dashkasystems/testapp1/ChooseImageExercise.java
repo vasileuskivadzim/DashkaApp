@@ -18,7 +18,7 @@ public class ChooseImageExercise {
     public ChooseImageExercise(NamedPicture[] pictures) {
         this.namedPictures = pictures;
         this.mutate();
-        this.rightAnswerIndex = this.newRightAnswer();
+        this.newRightAnswer();
     }
 
     // Implementing Fisher–Yates shuffle
@@ -34,9 +34,9 @@ public class ChooseImageExercise {
         }
     }
 
-    public int newRightAnswer() {
+    public void newRightAnswer() {
         Random random = new Random();
-        return random.nextInt(this.namedPictures.length);
+        this.rightAnswerIndex = random.nextInt(this.namedPictures.length);
     }
 
 
