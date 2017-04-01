@@ -14,7 +14,7 @@ import android.graphics.drawable.shapes.Shape;
  */
 public class ShapeFactory {
     public static ShapeDrawable drawCircle (int width, int height, int color, int borderColor) {
-        BorderedShape borderedOval = new BorderedShape(new OvalShape(), color, borderColor, 10);
+        BorderedShape borderedOval = new BorderedShape(new OvalShape(), color, borderColor, 3);
         borderedOval.setIntrinsicHeight (height);
         borderedOval.setIntrinsicWidth (width);
         borderedOval.setPadding (10,10,10,10);
@@ -30,14 +30,14 @@ public class ShapeFactory {
         p.lineTo(width, (float) (0.75*width));
         p.lineTo((float) (0.0), (float) (0.75*width));
         p.lineTo((float) (0.0), (float) (0.25*width));
-        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 10);
+        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 3);
         borderedRect.setIntrinsicHeight (height);
         borderedRect.setIntrinsicWidth (width);
         return borderedRect;
     }
 
     public static ShapeDrawable drawSquare (int width, int height, int color, int borderColor) {
-        BorderedShape borderedRect = new BorderedShape(new RectShape(), color, borderColor, 10);
+        BorderedShape borderedRect = new BorderedShape(new RectShape(), color, borderColor, 3);
         borderedRect.setIntrinsicHeight(height);
         borderedRect.setIntrinsicWidth(width );
         return borderedRect;
@@ -51,7 +51,7 @@ public class ShapeFactory {
         p.lineTo((float) (0.00*width),(float) (0.40*width));
         p.lineTo((float) (0.77*width),width);
         p.lineTo((float) (0.50*width),(float) (0.03*width));
-        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 10);
+        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 3);
         borderedRect.setIntrinsicHeight (height);
         borderedRect.setIntrinsicWidth (width);
         return borderedRect;
@@ -64,7 +64,7 @@ public class ShapeFactory {
         p.lineTo((float) (0.5*width), (float) (0.0));
         p.lineTo((float) (width), width);
         p.lineTo((float) (0.0), width);
-        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 10);
+        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 3);
         borderedRect.setIntrinsicHeight (height);
         borderedRect.setIntrinsicWidth (width);
         return borderedRect;
@@ -79,7 +79,7 @@ public class ShapeFactory {
         p.lineTo((float) (0.75*width),(float) (width-0.067*width));
         p.lineTo((float) (0.25*width),(float) (width-0.067*width));
         p.lineTo((float) (0.0),(float) (0.5*width));
-        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 10);
+        BorderedShape borderedRect = new BorderedShape(new PathShape(p, width, height), color, borderColor, 3);
         borderedRect.setIntrinsicHeight (height);
         borderedRect.setIntrinsicWidth (width);
         return borderedRect;
