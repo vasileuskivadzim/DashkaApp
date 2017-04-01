@@ -1,5 +1,6 @@
 package com.dashkasystems.testapp1;
 
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import ru.yandex.speechkit.Vocalizer;
 
@@ -55,23 +62,51 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
 
         int xOffset = 0;
         int yOffset = 0;
+        int minMargin = 10;
+        List<Integer> wordsLength = new ArrayList<>();
+        List<String> line = new ArrayList<>();
         for (int i = 0; i < exercise.words.length; i++) {
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             String word = exercise.words[exercise.shuffledIndexes[i]];
             Size wordSize = measureWord(word);
             if (xOffset + wordSize.getWidth() < screenWidth) {
-                layoutParams.leftMargin = xOffset;
-                layoutParams.topMargin = yOffset;
-                xOffset += wordSize.getWidth() + 10;
-            }
-            else {
-                yOffset += wordSize.getHeight() + 10;
-                layoutParams.leftMargin = 0;
-                layoutParams.topMargin = yOffset;
+                xOffset += wordSize.getWidth() + minMargin;
+                wordsLength.add(wordSize.getWidth());
+                line.add(word);
+            } else {
+                int addition = (int) (screenWidth - xOffset);
+                int avgAddition = addition / (line.size() + 1);
+
                 xOffset = wordSize.getWidth() + 10;
+
+                int lineXOffset = avgAddition;
+                for (int wordInLine = 0; wordInLine < line.size(); wordInLine++) {
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.leftMargin = lineXOffset;
+                    layoutParams.topMargin = yOffset;
+                    lineXOffset += wordsLength.get(wordInLine) + minMargin + avgAddition;
+                    this.configureWord(layoutParams, line.get(wordInLine));
+                }
+                wordsLength.clear();
+                line.clear();
+                wordsLength.add(wordSize.getWidth());
+                line.add(word);
+                yOffset += wordSize.getHeight() + 10;
             }
-            this.configureWord(layoutParams, word);
+
+            if (line.size() > 0 && (i + 1) == exercise.words.length) {
+                int addition = (int) (screenWidth - xOffset);
+                int avgAddition = (int) addition / (line.size() + 1);
+                int lineXOffset = avgAddition;
+                for (int wordInLine = 0; wordInLine < line.size(); wordInLine++) {
+                    RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    layoutParams.leftMargin = lineXOffset;
+                    layoutParams.topMargin = yOffset;
+                    lineXOffset += wordsLength.get(wordInLine) + minMargin + avgAddition;
+                    this.configureWord(layoutParams, line.get(wordInLine));
+                }
+            }
         }
+
     }
 
     protected void configureWord(RelativeLayout.LayoutParams layoutParams, String word) {
