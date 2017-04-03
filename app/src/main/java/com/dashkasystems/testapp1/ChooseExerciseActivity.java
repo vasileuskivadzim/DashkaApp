@@ -46,7 +46,7 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);
         } else if (position == 3) {
-            Intent intent = new Intent(this, RelateExerciseActivity.class);
+            Intent intent = new Intent(this, RelateTapableExerciseActivity.class);
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);
         } else if (position == 4) {

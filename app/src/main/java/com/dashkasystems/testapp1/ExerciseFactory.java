@@ -77,6 +77,19 @@ public class ExerciseFactory {
         return new ShapeColoringExercise(shapes, shapeNames, colors, colorNames);
     }
 
+    private static String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+
+
+    public static RelateImageNumberExercise relateImageExercise() {
+        NamedPicture namedPictures[] = new NamedPicture[4];
+        for (int i = 0; i < 4; i++) {
+            NamedPicture newPicture = new NamedPicture(picturesNames[i], imagesToReorder[i]);
+            namedPictures[i] = newPicture;
+        }
+        return new RelateImageNumberExercise(numbers, namedPictures, 4);
+    }
+
+
 
 
 

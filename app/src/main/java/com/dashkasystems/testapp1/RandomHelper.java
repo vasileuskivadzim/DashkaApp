@@ -18,4 +18,9 @@ public class RandomHelper {
             array[i] = temp;
         }
     }
+
+    public static int getInt(int ceil) {
+        Random rnd = new Random();
+        return rnd.nextInt(ceil);
+    }
 }
