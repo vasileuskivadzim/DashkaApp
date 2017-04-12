@@ -16,8 +16,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.yandex.speechkit.Vocalizer;
-
 public class ChooseImageExerciseActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
     protected TextView captionTextView;
@@ -97,8 +95,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
 
     private void vocalizeAtIndex(int index) {
         String name = this.exercise.namedPictures[index].name;
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", name, true);
-        vocalizer.start();
+        Vocalizer.vocalizeWord(name, this);
     }
 
     @Override

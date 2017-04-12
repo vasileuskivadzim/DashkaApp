@@ -2,6 +2,7 @@ package com.dashkasystems.testapp1;
 
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.RawRes;
 
 import java.util.HashSet;
 import java.util.List;
