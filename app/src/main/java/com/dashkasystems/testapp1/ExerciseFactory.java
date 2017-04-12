@@ -27,8 +27,13 @@ public class ExerciseFactory {
 
 
 
-    private static @DrawableRes int[] imagesToReorder = { R.drawable.lion, R.drawable.deer, R.drawable.rabbit, R.drawable.wolf};
-    private static String[] picturesNames = {"Лев", "Oлень", "Кролик", "Волк"};
+    private static @DrawableRes int[] imagesToReorder = {
+            R.drawable.wolf, R.drawable.rabbit, R.drawable.cat, R.drawable.hen, R.drawable.lion,
+            R.drawable.fox, R.drawable.horse, R.drawable.bear, R.drawable.mouse, R.drawable.deer,
+            R.drawable.rooster, R.drawable.pig, R.drawable.dog};
+    private static String[] picturesNames = {"Волк", "Заяц", "Кот", "Курица", "Лев",
+            "Лиса", "Лошадь", "Медведь", "Мышь", "Олень", "Петух", "Свинья", "Собака" };
+
 
     public static ChooseImageExercise chooseImageExercise(int dimension) {
         NamedPicture namedPictures[] = new NamedPicture[dimension];
@@ -81,8 +86,9 @@ public class ExerciseFactory {
 
 
     public static RelateImageNumberExercise relateImageExercise() {
-        NamedPicture namedPictures[] = new NamedPicture[4];
-        for (int i = 0; i < 4; i++) {
+        int imagesCount = imagesToReorder.length;
+        NamedPicture namedPictures[] = new NamedPicture[imagesCount];
+        for (int i = 0; i < imagesCount; i++) {
             NamedPicture newPicture = new NamedPicture(picturesNames[i], imagesToReorder[i]);
             namedPictures[i] = newPicture;
         }

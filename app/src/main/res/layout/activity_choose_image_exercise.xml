@@ -38,7 +38,9 @@
         android:id="@+id/choose_image_exersise_layout"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/choose_image_exersize_speak_button"></TableLayout>
+        android:layout_below="@+id/choose_image_exercise_caption">
+
+    </TableLayout>
 
     <Button
         android:text="Запомнил"
