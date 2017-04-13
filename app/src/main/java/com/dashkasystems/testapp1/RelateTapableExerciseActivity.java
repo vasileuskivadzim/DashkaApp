@@ -2,6 +2,7 @@ package com.dashkasystems.testapp1;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.dashkasystems.testapp1.Declension.Collocation;
 
 import org.w3c.dom.Text;
 
@@ -105,9 +108,16 @@ public class RelateTapableExerciseActivity extends AppCompatActivity implements 
     }
 
     private void vocalizeStep() {
-        String name = this.exercise.getCollocation();
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", name, true);
-        vocalizer.start();
+        String number = exercise.getNumber();
+        String imageName = exercise.getPictureName();
+
+        Collocation collocation = new Collocation(number, imageName);
+        Log.d("TAGGG", collocation.description());
+
+
+//        String name = this.exercise.getCollocation();
+//        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", name, true);
+//        vocalizer.start();
     }
 
 

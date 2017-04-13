@@ -7,5 +7,15 @@ public class NumeralSpeechCase extends SpeechCase {
         super(masculine);
         this.plural = plural;
     }
+
+    public String decline(PartOfSpeechNumeral numeral) {
+        switch (numeral) {
+            case Plural:
+                return plural;
+            case Singular:
+                return masculine;
+        }
+        return null;
+    }
 }
 

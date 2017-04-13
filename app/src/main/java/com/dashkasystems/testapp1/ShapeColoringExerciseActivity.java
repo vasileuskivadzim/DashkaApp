@@ -4,6 +4,7 @@ import android.graphics.drawable.ShapeDrawable;
 import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.dashkasystems.testapp1.Declension.Collocation;
 
 import ru.yandex.speechkit.Vocalizer;
 
@@ -177,8 +180,14 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
 
     private int vocalizeIndex = 0;
     private void vocalize() {
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", this.exercise.textAtIndex(this.vocalizeIndex), true);
-        vocalizer.start();
+        String colorName = exercise.colorNameAtIndex(vocalizeIndex);
+        String shapeName = exercise.shapeNameAtIndex(vocalizeIndex);
+        Collocation collocation = new Collocation(colorName, shapeName);
+        Log.d("TAGGG", collocation.description());
+
+
+        //Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", this.exercise.textAtIndex(this.vocalizeIndex), true);
+        //vocalizer.start();
         this.vocalizeIndex++;
         if (this.vocalizeIndex == this.exercise.shapes.length) {
             this.vocalizeIndex = 0;

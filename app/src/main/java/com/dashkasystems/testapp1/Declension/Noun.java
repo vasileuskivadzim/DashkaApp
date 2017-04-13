@@ -36,6 +36,25 @@ public class Noun extends PartOfSpeech {
         this.kind = kind;
         this.type = PartOfSpeechType.Noun;
     }
+
+    public String decline(PartOfSpeechCase speechCase, PartOfSpeechNumeral numeral) {
+        switch (speechCase) {
+            case Nominative:
+                return nominative.decline(numeral);
+            case Genitive:
+                return genitive.decline(numeral);
+            case Dative:
+                return dative.decline(numeral);
+            case Accusative:
+                return accusative.decline(numeral);
+            case Ablative:
+                return ablative.decline(numeral);
+            case Prepositional:
+                return prepositional.decline(numeral);
+        }
+        return null;
+    }
+
 }
 
 

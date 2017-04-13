@@ -21,7 +21,7 @@ public class Adjective extends PartOfSpeech {
                 KindNumeralSpeechCase dative,
                 KindNumeralSpeechCase accusative,
                 KindNumeralSpeechCase ablative,
-                KindNumeralSpeechCase prepositional, PartOfSpeechKind kind) {
+                KindNumeralSpeechCase prepositional) {
 
         this.nominative = nominative;
         this.genitive = genitive;
@@ -30,6 +30,24 @@ public class Adjective extends PartOfSpeech {
         this.ablative = ablative;
         this.prepositional = prepositional;
         this.type = PartOfSpeechType.Adjective;
+    }
+
+    public String decline(PartOfSpeechCase speechCase, PartOfSpeechNumeral numeral, PartOfSpeechKind kind) {
+        switch (speechCase) {
+            case Nominative:
+                return nominative.decline(kind, numeral);
+            case Genitive:
+                return genitive.decline(kind, numeral);
+            case Dative:
+                return dative.decline(kind, numeral);
+            case Accusative:
+                return accusative.decline(kind, numeral);
+            case Ablative:
+                return ablative.decline(kind, numeral);
+            case Prepositional:
+                return prepositional.decline(kind, numeral);
+        }
+        return null;
     }
 }
 

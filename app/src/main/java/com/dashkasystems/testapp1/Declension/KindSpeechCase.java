@@ -9,5 +9,17 @@ public class KindSpeechCase extends SpeechCase {
         this.feminine = feminine;
         this.neuter = neuter;
     }
+
+    public String decline(PartOfSpeechKind kind) {
+        switch (kind) {
+            case Masculine:
+                return masculine;
+            case Feminine:
+                return feminine;
+            case Neuter:
+                return neuter;
+        }
+        return null;
+    }
 }
 

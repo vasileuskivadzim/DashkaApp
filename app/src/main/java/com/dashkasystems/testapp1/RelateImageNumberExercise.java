@@ -17,9 +17,17 @@ public class RelateImageNumberExercise {
     private int rightNumberIndex;
     private int rightPictureIndex;
 
+    public String getNumber() {
+        return this.numbers[shuffledNumbersIndexes[rightNumberIndex]];
+    }
+
+    public String getPictureName() {
+        return this.pictures[shuffledPicturesIndexes[rightPictureIndex]].name;
+    }
+
     public String getCollocation() {
-        return this.numbers[shuffledNumbersIndexes[rightNumberIndex]] + " "
-                + this.pictures[shuffledPicturesIndexes[rightPictureIndex]].name;
+        return getNumber() + " "
+                + getPictureName();
     }
 
     public boolean isRightSelection(boolean isNumber, int index) {

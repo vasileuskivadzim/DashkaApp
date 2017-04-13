@@ -16,6 +16,11 @@ enum PartOfSpeechKind {
     Masculine, Feminine, Neuter
 }
 
+enum PartOfSpeechCase {
+    Nominative, Genitive, Dative, Accusative, Ablative, Prepositional;
+}
+
+
 public class PartOfSpeech {
     PartOfSpeechType type;
 }

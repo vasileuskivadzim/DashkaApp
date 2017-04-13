@@ -65,12 +65,21 @@ public class ShapeColoringExercise {
         return true;
     }
 
-    public String textAtIndex(int index) {
+    public String shapeNameAtIndex(int index) {
         int shuffledShapeIndex = this.shuffledShapesIndexes[index];
         String shapeName = this.shapeNames[shuffledShapeIndex];
+        return shapeName;
+    }
+
+    public String colorNameAtIndex(int index) {
         int trueColorIndex = this.shuffledColorsIndexes[index];
         String colorName = this.colorNames[trueColorIndex];
-        return colorName + " " + shapeName;
+        return colorName;
+    }
+
+
+    public String textAtIndex(int index) {
+        return colorNameAtIndex(index) + " " + shapeNameAtIndex(index);
     }
 
 
