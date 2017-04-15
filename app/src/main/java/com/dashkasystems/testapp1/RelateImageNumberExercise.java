@@ -2,6 +2,8 @@ package com.dashkasystems.testapp1;
 
 import android.support.annotation.DrawableRes;
 
+import com.dashkasystems.testapp1.Declension.Collocation;
+
 /**
  * Created by pandasystems on 4/1/17.
  */
@@ -25,9 +27,11 @@ public class RelateImageNumberExercise {
         return this.pictures[shuffledPicturesIndexes[rightPictureIndex]].name;
     }
 
-    public String getCollocation() {
-        return getNumber() + " "
-                + getPictureName();
+    public Collocation getCollocation() {
+        String number = getNumber();
+        String imageName = getPictureName();
+
+        return new Collocation(number, imageName);
     }
 
     public boolean isRightSelection(boolean isNumber, int index) {

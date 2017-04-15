@@ -1,13 +1,17 @@
-package com.dashkasystems.testapp1;
+package com.dashkasystems.testapp1.Vocalizing;
 
 
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.annotation.RawRes;
 
+import com.dashkasystems.testapp1.Declension.Collocation;
+import com.dashkasystems.testapp1.R;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * Created by pandasystems on 4/12/17.
@@ -78,19 +82,35 @@ public class Vocalizer {
         aMap.put("Синий", R.raw.blue);
         aMap.put("Синяя", R.raw.bluef);
 
+        aMap.put("Один", R.raw.one);
+        aMap.put("Одна", R.raw.onef);
+        aMap.put("Два", R.raw.two);
+        aMap.put("Две", R.raw.twof);
+        aMap.put("Три", R.raw.three);
+        aMap.put("Четыре", R.raw.four);
+        aMap.put("Пять", R.raw.five);
+        aMap.put("Шесть", R.raw.six);
+        aMap.put("Семь", R.raw.seven);
+        aMap.put("Восемь", R.raw.eight);
+        aMap.put("Девять", R.raw.nine);
+        aMap.put("Десять", R.raw.ten);
+        aMap.put("Одиннадцать", R.raw.eleven);
+        aMap.put("Двенадцать", R.raw.twelve);
+        aMap.put("Тринадцать", R.raw.thirteen);
+
         wordMap = Collections.unmodifiableMap(aMap);
     }
 
-    public static void vocalizeWord(String word, Context context) {
+    public static void vocalizeWord(String word, Context context, MediaPlayer.OnCompletionListener completionListener) {
         int res = getSoundResForWord(word);
         if (res != -1) {
-            playSound(res, context);
+            playSound(res, context, completionListener);
         }
-
     }
 
-    public static void playSound(@RawRes int soundRes, Context context) {
+    private static void playSound(@RawRes int soundRes, Context context, MediaPlayer.OnCompletionListener completionListener) {
         MediaPlayer mPlayer = MediaPlayer.create(context, soundRes);
+        mPlayer.setOnCompletionListener(completionListener);
         mPlayer.start();
     }
 

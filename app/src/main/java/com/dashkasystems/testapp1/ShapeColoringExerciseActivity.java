@@ -15,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dashkasystems.testapp1.Declension.Collocation;
+import com.dashkasystems.testapp1.Vocalizing.CollocationVocalizer;
 
 import ru.yandex.speechkit.Vocalizer;
 
@@ -184,7 +185,8 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
         String shapeName = exercise.shapeNameAtIndex(vocalizeIndex);
         Collocation collocation = new Collocation(colorName, shapeName);
         Log.d("TAGGG", collocation.description());
-
+        CollocationVocalizer vocalizer = new CollocationVocalizer(collocation, this);
+        vocalizer.vocalize();
 
         //Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", this.exercise.textAtIndex(this.vocalizeIndex), true);
         //vocalizer.start();

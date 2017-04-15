@@ -5,7 +5,7 @@ package com.dashkasystems.testapp1.Declension;
  */
 
 public class Collocation {
-    String[] words;
+    public String[] words;
     private String first;
     private String second;
 

@@ -1,9 +1,7 @@
 package com.dashkasystems.testapp1;
 
-import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -95,7 +95,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
 
     private void vocalizeAtIndex(int index) {
         String name = this.exercise.namedPictures[index].name;
-        Vocalizer.vocalizeWord(name, this);
+        Vocalizer.vocalizeWord(name, this, null);
     }
 
     @Override

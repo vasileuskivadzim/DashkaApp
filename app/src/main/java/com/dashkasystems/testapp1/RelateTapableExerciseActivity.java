@@ -15,6 +15,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dashkasystems.testapp1.Declension.Collocation;
+import com.dashkasystems.testapp1.Vocalizing.CollocationVocalizer;
 
 import org.w3c.dom.Text;
 
@@ -38,7 +39,7 @@ public class RelateTapableExerciseActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_relate_tapable_exercise);
 
         captionTextView = (TextView) findViewById(R.id.choose_image_exercise_caption);
-        captionTextView.setText("Соотнеси число и животное");
+        captionTextView.setText("Соотнеси число и предмет");
 
         collocationTextView = (TextView) findViewById(R.id.resultTextView);
         collocationTextView.setText("");
@@ -108,11 +109,11 @@ public class RelateTapableExerciseActivity extends AppCompatActivity implements 
     }
 
     private void vocalizeStep() {
-        String number = exercise.getNumber();
-        String imageName = exercise.getPictureName();
-
-        Collocation collocation = new Collocation(number, imageName);
+        Collocation collocation = exercise.getCollocation();
         Log.d("TAGGG", collocation.description());
+        CollocationVocalizer vocalizer = new CollocationVocalizer(collocation, this);
+        vocalizer.vocalize();
+
 
 
 //        String name = this.exercise.getCollocation();
@@ -140,7 +141,7 @@ public class RelateTapableExerciseActivity extends AppCompatActivity implements 
             v.setBackgroundColor(getResources().getColor(color));
 
             if (isExerciseStepCompleted()) {
-                collocationTextView.setText(exercise.getCollocation());
+                collocationTextView.setText(exercise.getCollocation().description());
                 nextBtn.setVisibility(View.VISIBLE);
             }
         }
@@ -158,7 +159,7 @@ public class RelateTapableExerciseActivity extends AppCompatActivity implements 
         v.setBackgroundColor(getResources().getColor(color));
 
         if (isExerciseStepCompleted()) {
-            collocationTextView.setText(exercise.getCollocation());
+            collocationTextView.setText(exercise.getCollocation().description());
             nextBtn.setVisibility(View.VISIBLE);
         }
 

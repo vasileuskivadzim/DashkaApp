@@ -28,7 +28,7 @@ public class ExerciseFactory {
 
 
 
-    private static @DrawableRes int[] imagesToReorder = {
+    private static @DrawableRes int[] imagesToChoose = {
             R.drawable.wolf, R.drawable.rabbit, R.drawable.cat, R.drawable.hen, R.drawable.lion,
             R.drawable.fox, R.drawable.horse, R.drawable.bear, R.drawable.mouse, R.drawable.deer,
             R.drawable.rooster, R.drawable.pig, R.drawable.dog};
@@ -41,13 +41,13 @@ public class ExerciseFactory {
         Set<Integer> added = new HashSet<>(dimension);
         Random rnd = new Random();
         for (int i = 0; i < dimension; i++) {
-            int rand = rnd.nextInt(imagesToReorder.length);
+            int rand = rnd.nextInt(imagesToChoose.length);
             while (added.contains(rand)) {
-                rand = rnd.nextInt(imagesToReorder.length);
+                rand = rnd.nextInt(imagesToChoose.length);
             }
             added.add(rand);
 
-            NamedPicture newPicture = new NamedPicture(picturesNames[rand], imagesToReorder[rand]);
+            NamedPicture newPicture = new NamedPicture(picturesNames[rand], imagesToChoose[rand]);
             namedPictures[i] = newPicture;
         }
 
@@ -83,14 +83,19 @@ public class ExerciseFactory {
         return new ShapeColoringExercise(shapes, shapeNames, colors, colorNames);
     }
 
-    private static String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};
+    private static String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
 
+    private static @DrawableRes int[] imagesToRelate = {
+            R.drawable.book, R.drawable.doll, R.drawable.horsetoy, R.drawable.cartoy, R.drawable.beartoy,
+            R.drawable.ball, R.drawable.pyramid, R.drawable.flight, R.drawable.turtle, R.drawable.yule};
+    private static String[] picturesToRelateNames = {"Книга", "Кукла", "Лошадка", "Машинка", "Мишка",
+            "Мяч", "Пирамидка", "Самолёт", "Черепашка", "Юла"};
 
     public static RelateImageNumberExercise relateImageExercise() {
-        int imagesCount = imagesToReorder.length;
+        int imagesCount = imagesToRelate.length;
         NamedPicture namedPictures[] = new NamedPicture[imagesCount];
         for (int i = 0; i < imagesCount; i++) {
-            NamedPicture newPicture = new NamedPicture(picturesNames[i], imagesToReorder[i]);
+            NamedPicture newPicture = new NamedPicture(picturesToRelateNames[i], imagesToRelate[i]);
             namedPictures[i] = newPicture;
         }
         return new RelateImageNumberExercise(numbers, namedPictures, 4);

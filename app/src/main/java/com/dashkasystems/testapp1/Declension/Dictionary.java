@@ -166,7 +166,7 @@ public class Dictionary {
         aMap.put("Мишка", bearToy);
 
         PartOfSpeech ball = new Noun(new NumeralSpeechCase("Мяч", "Мячи"),
-                new NumeralSpeechCase("Мячы", "Мячей"),
+                new NumeralSpeechCase("Мячa", "Мячей"),
                 null, null, null, null,
                 PartOfSpeechKind.Masculine);
         aMap.put("Мяч", ball);
@@ -178,7 +178,7 @@ public class Dictionary {
         aMap.put("Пирамидка", pyramid);
 
         PartOfSpeech flight = new Noun(new NumeralSpeechCase("Самолёт", "Самолёты"),
-                new NumeralSpeechCase("Самолёты", "Самолётов"),
+                new NumeralSpeechCase("Самолёта", "Самолётов"),
                 null, null, null, null,
                 PartOfSpeechKind.Masculine);
         aMap.put("Самолёт", flight);
