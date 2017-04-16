@@ -1,6 +1,5 @@
 package com.dashkasystems.testapp1;
 
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,23 +11,19 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
-
-import ru.yandex.speechkit.Vocalizer;
 
 public class ReorderWordsTapableExerciseActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView title;
     private TextView sentenceTextView;
     private RelativeLayout wordsLayout;
+    private Button nextButton;
 
-    protected ReorderWordsExercise exercise;
+    protected ReorderWordsExerciseSequence exerciseSequence;
     protected int nextWordIndex;
 
     @Override
@@ -36,7 +31,7 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reorder_words_tapable_exercise);
 
-        this.setupExercise(ExerciseFactory.reorderWordsExercise(1));
+        this.setupExercise(ExerciseFactory.sashaAndRain());
 
         title = (TextView) findViewById(R.id.titleTextView);
         title.setText("Собери предложение из слов");
@@ -46,19 +41,24 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
 
         wordsLayout = (RelativeLayout) findViewById(R.id.buttonsLayout);
 
+        nextButton = (Button) findViewById(R.id.nextBtn);
+        nextButton.setOnClickListener(this);
+
         ImageButton speakButton = (ImageButton) findViewById(R.id.reorder_words_exercise_speak_btn);
         speakButton.setOnClickListener(this);
+
 
         configureTapableWords();
     }
 
-    public void setupExercise(ReorderWordsExercise exercise){
+    public void setupExercise(ReorderWordsExerciseSequence exercise){
         this.nextWordIndex = 0;
-        this.exercise = exercise;
+        this.exerciseSequence = exercise;
     }
 
     private void configureTapableWords() {
         float screenWidth = ScreenHelper.getPXWidth(this) - 64;
+        ReorderWordsExercise exercise = exerciseSequence.getCurrent();
 
         int xOffset = 0;
         int yOffset = 0;
@@ -130,13 +130,16 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
     }
 
     private void vocalize() {
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", exercise.getSentence(), true);
-        vocalizer.start();
+        if (!exerciseSequence.isCompleted()) {
+            Vocalizer.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, null);
+        }
     }
 
 
     @Override
     public void onClick(View v) {
+        Log.d("TAGG", "is " + v.getId());
+
         final int childCount = wordsLayout.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View word = wordsLayout.getChildAt(i);
@@ -145,7 +148,17 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
         if (v.getId() == R.id.reorder_words_exercise_speak_btn) {
             vocalize();
         }
+        else if (v.getId() == R.id.nextBtn) {
+            if (!exerciseSequence.isCompleted()) {
+                v.setVisibility(View.INVISIBLE);
+                nextWordIndex = 0;
+                sentenceTextView.setText("");
+                configureTapableWords();
+                vocalize();
+            }
+        }
         else {
+            ReorderWordsExercise exercise = exerciseSequence.getCurrent();
             if (v.getTag().equals(exercise.words[nextWordIndex]))  {
                 v.setVisibility(View.INVISIBLE);
                 String text = (String) sentenceTextView.getText();
@@ -153,6 +166,13 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
                 sentenceTextView.setText(text);
                 nextWordIndex++;
                 if (nextWordIndex == exercise.words.length) {
+                    wordsLayout.removeAllViewsInLayout();
+                    exerciseSequence.next();
+                    if (exerciseSequence.isCompleted()) {
+                        nextButton.setText("Выполнено");
+                    }
+                    nextButton.setVisibility(View.VISIBLE);
+
                     ToastHelper.showToast(this, true);
                 }
             } else {

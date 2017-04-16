@@ -34,15 +34,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/buttonsLayout">
-
-    </RelativeLayout>
-
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
@@ -53,5 +44,23 @@
         android:layout_centerHorizontal="true"
         android:textSize="24sp"
         android:textAlignment="center" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonsLayout"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+
+    </RelativeLayout>
+
+    <Button
+        android:text="Дальше"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nextBtn"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
 
 </RelativeLayout>

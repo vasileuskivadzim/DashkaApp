@@ -59,11 +59,39 @@ public class ExerciseFactory {
 
 
     private static String[] sentences = {"Кошка съела воробья и теперь не голодна.",
-                            "Довольно длинное предложение с фанстастичеси предлиннющими словами и несколькими словами ми-ми-ми"};
+                            "Бабочка села на цветок.",
+    "На высокой сосне сидит белка.",
+            "Снегири сидят на ветках.",
+            "Снегири прилетели и сели на ветки.",
+            "На лугу растут цветы.",
+            "Ярко светит солнце."};
+
+    private static String[] sashaAndRain = {"Caша пошёл гулять на улицу.",
+            "Начался дождь.",
+            "У мальчика не было зонта.",
+            "Он промок",
+            "Саша вернулся домой мокрым"};
+
 
 
     public static ReorderWordsExercise reorderWordsExercise(int index) {
         return new ReorderWordsExercise(sentences[index]);
+    }
+
+    public static ReorderWordsExerciseSequence sashaAndRain() {
+        ReorderWordsExercise[] exercises = new ReorderWordsExercise[sashaAndRain.length];
+        for (int i = 0; i < exercises.length; i++) {
+            exercises[i] = new ReorderWordsExercise(sashaAndRain[i]);
+        }
+        return new ReorderWordsExerciseSequence(exercises);
+    }
+
+    public static ReorderWordsExerciseSequence simpleSentences() {
+        ReorderWordsExercise[] exercises = new ReorderWordsExercise[sentences.length];
+        for (int i = 0; i < exercises.length; i++) {
+            exercises[i] = new ReorderWordsExercise(sentences[i]);
+        }
+        return new ReorderWordsExerciseSequence(exercises);
     }
 
 

@@ -101,6 +101,32 @@ public class Vocalizer {
         wordMap = Collections.unmodifiableMap(aMap);
     }
 
+    private static final Map<String, Integer> sentenceMap;
+    static {
+        Map<String, Integer> aMap = new HashMap<>();
+        aMap.put("Кошка съела воробья и теперь не голодна.", R.raw.sentence_cat_ate_sparrow);
+        aMap.put("Бабочка села на цветок.", R.raw.sentence_butterfly_on_flower);
+        aMap.put("На высокой сосне сидит белка.", R.raw.sentence_squirel_on_hight);
+        aMap.put("Снегири сидят на ветках.", R.raw.sentence_bullfinch_on_branches);
+        aMap.put("Снегири прилетели и сели на ветки.", R.raw.sentence_bullfinches_arrived);
+        aMap.put("На лугу растут цветы.", R.raw.sentence_flowers_on_meadow);
+        aMap.put("Ярко светит солнце.", R.raw.sentence_sun_is_shining);
+        aMap.put("Caша пошёл гулять на улицу.", R.raw.sasha_go_out);
+        aMap.put("Начался дождь.", R.raw.sasha_rain_started);
+        aMap.put("У мальчика не было зонта.", R.raw.sasha_havent_umberella);
+        aMap.put("Он промок", R.raw.sasha_wet);
+        aMap.put("Саша вернулся домой мокрым", R.raw.sasha_came_back);
+        sentenceMap = Collections.unmodifiableMap(aMap);
+    }
+
+    public static void vocalizeSentence(String sentence, Context context, MediaPlayer.OnCompletionListener completionListener) {
+        int res = getSoundResForSentence(sentence);
+        if (res != -1) {
+            playSound(res, context, completionListener);
+        }
+    }
+
+
     public static void vocalizeWord(String word, Context context, MediaPlayer.OnCompletionListener completionListener) {
         int res = getSoundResForWord(word);
         if (res != -1) {
@@ -116,6 +142,14 @@ public class Vocalizer {
 
     private static @RawRes int getSoundResForWord(String word) {
         Integer res = wordMap.get(word);
+        if (res != null) {
+            return res;
+        }
+        return -1;
+    }
+
+    private static @RawRes int getSoundResForSentence(String sentence) {
+        Integer res = sentenceMap.get(sentence);
         if (res != null) {
             return res;
         }
