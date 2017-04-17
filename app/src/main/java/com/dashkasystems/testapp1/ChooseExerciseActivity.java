@@ -13,8 +13,8 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
 
     protected String[] exercises = {"Текст из предложений", "Выбери картинку", "Предложение из слов 1",
             "Число - Картинка", "Раскрась фигуры", "Конструктивная картина",
-            "Предложение из слов 2", "Упражнение 2", "Упражнение 3",
-            "Упражнение 1", "Упражнение 2", "Упражнение 3",
+            "Предложение из слов 2", "Бытовые звуки", "Звуки природы",
+            "Музыкальные интсрументы", "Упражнение 2", "Упражнение 3",
             "Упражнение 1", "Упражнение 2", "Упражнение 3"};
 
     @Override
@@ -59,6 +59,21 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
             this.startActivity(intent);
         } else if (position == 6) {
             Intent intent = new Intent(this, ReorderWordsTapableExerciseActivity.class);
+            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+            this.startActivity(intent);
+        } else if (position == 7) {
+            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
+            intent.putExtra("Sounds", "Domestic");
+            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+            this.startActivity(intent);
+        } else if (position == 8) {
+            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
+            intent.putExtra("Sounds", "Nature");
+            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+            this.startActivity(intent);
+        } else if (position == 9) {
+            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
+            intent.putExtra("Sounds", "Music");
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);
         }

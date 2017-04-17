@@ -32,12 +32,21 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
         setContentView(R.layout.activity_choose_image_exercise);
 
         captionTextView = (TextView) findViewById(R.id.choose_image_exercise_caption);
-        captionTextView.setText("Нажми на животное и запопмни его название");
+
+
+        String soundsType = getIntent().getStringExtra("Sounds");
+        if (soundsType != null) {
+            exercise = ExerciseFactory.soundsExercise(soundsType, 4);
+            captionTextView.setText("Нажми на картинку и запомни звук");
+        } else {
+            exercise = ExerciseFactory.chooseNamedPictureExercise(4);
+            captionTextView.setText("Нажми на животное и запомни его название");
+        }
 
         rememberButton = (Button) findViewById(R.id.rememberBtn);
         rememberButton.setOnClickListener(this);
 
-        exercise = ExerciseFactory.chooseImageExercise(4);
+
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.choose_image_exersize_speak_button);
         vocalizeBtn.setOnClickListener(this);
@@ -59,7 +68,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
                 shapeDim);
         layoutParams.setMargins(10, 10, 10, 0);
 
-        int picturesCount = this.exercise.namedPictures.length;
+        int picturesCount = this.exercise.getPicturesCount();
         int rowCount = (int) Math.ceil( picturesCount / (double) colCount);
 
         for(int row = 0; row < rowCount; row++) {
@@ -69,7 +78,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
 
                 if (index < picturesCount) {
                     ImageView image = new ImageView(this);
-                    image.setImageResource(this.exercise.namedPictures[index].picture);
+                    image.setImageResource(this.exercise.getPictureResAtIndex(index));
                     image.setLayoutParams(layoutParams);
                     image.setOnTouchListener(this);
                     image.setId(index);
@@ -86,7 +95,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
     public void onClick(View v) {
         if (v.getId() == R.id.rememberBtn) {
             exerciseStarted = true;
-            captionTextView.setText("Послушай и выбери животное");
+            captionTextView.setText("Послушай и выбери картинку");
             v.setVisibility(View.INVISIBLE);
         } else {
             vocalizeAtIndex(this.exercise.getRightAnswerIndex());
@@ -94,8 +103,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
     }
 
     private void vocalizeAtIndex(int index) {
-        String name = this.exercise.namedPictures[index].name;
-        Vocalizer.vocalizeWord(name, this, null);
+        this.exercise.vocalizeAtIndex(index, this);
     }
 
     @Override
@@ -116,7 +124,7 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
             vocalizeAtIndex(imageIndex);
             if (!tappedItems.contains(imageIndex)) {
                 tappedItems.add(imageIndex);
-                if (tappedItems.size() == this.exercise.namedPictures.length) {
+                if (tappedItems.size() == this.exercise.getPicturesCount()) {
                     rememberButton.setVisibility(View.VISIBLE);
                 }
             }

@@ -36,7 +36,7 @@ public class ExerciseFactory {
             "Лиса", "Лошадь", "Медведь", "Мышь", "Олень", "Петух", "Свинья", "Собака" };
 
 
-    public static ChooseImageExercise chooseImageExercise(int dimension) {
+    public static ChooseImageExercise chooseNamedPictureExercise(int dimension) {
         NamedPicture namedPictures[] = new NamedPicture[dimension];
         Set<Integer> added = new HashSet<>(dimension);
         Random rnd = new Random();
@@ -51,7 +51,55 @@ public class ExerciseFactory {
             namedPictures[i] = newPicture;
         }
 
-        return new ChooseImageExercise(namedPictures);
+        return new ChooseNamedPictureExercise(namedPictures);
+    }
+
+    private static @DrawableRes int[] soundsNatureImages = {
+            R.drawable.sounds_nature_creek, R.drawable.sounds_nature_leaves,
+            R.drawable.sounds_nature_rain_on_umbrella,
+            R.drawable.sounds_nature_waterfall, R.drawable.sounds_nature_wind};
+    private static @RawRes int[] soundsNatureSounds = {R.raw.sounds_nature_creek, R.raw.sounds_nature_leaves,
+            R.raw.sounds_nature_rain_on_umbrella, R.raw.sounds_nature_waterfall, R.raw.sounds_nature_wind};
+
+    private static @DrawableRes int[] soundsDomesticImages = {
+            R.drawable.sounds_domestic_clean_teeth, R.drawable.sounds_domestic_swipe,
+            R.drawable.sounds_domestic_vase, R.drawable.sounds_domestic_washer};
+    private static @RawRes int[] soundsDomesticSounds = {R.raw.sounds_domestic_clean_teeth, R.raw.sounds_domestic_swipe,
+            R.raw.sounds_domestic_vase, R.raw.sounds_domestic_washer};
+
+    private static @DrawableRes int[] soundsMusicImages = {
+            R.drawable.sounds_music_flute, R.drawable.sounds_music_piano,
+            R.drawable.sounds_music_small_drum,
+            R.drawable.sounds_music_trumpet, R.drawable.sounds_music_violin};
+    private static @RawRes int[] soundsMusicSounds = {R.raw.sounds_music_flute, R.raw.sounds_music_piano,
+            R.raw.sounds_music_small_drum, R.raw.sounds_music_trumpet, R.raw.sounds_music_violin};
+
+    public static ChooseImageExercise soundsExercise(String category, int dimension) {
+        int[] images = soundsNatureImages;
+        int[] sounds = soundsNatureSounds;
+        if (category.equals("Domestic")) {
+            images = soundsDomesticImages;
+            sounds = soundsDomesticSounds;
+        } else if (category.equals("Music")) {
+            images = soundsMusicImages;
+            sounds = soundsMusicSounds;
+        }
+
+        SoundedPicture namedPictures[] = new SoundedPicture[dimension];
+        Set<Integer> added = new HashSet<>(dimension);
+        Random rnd = new Random();
+        for (int i = 0; i < dimension; i++) {
+            int rand = rnd.nextInt(images.length);
+            while (added.contains(rand)) {
+                rand = rnd.nextInt(images.length);
+            }
+            added.add(rand);
+
+            SoundedPicture newPicture = new SoundedPicture(sounds[rand], images[rand]);
+            namedPictures[i] = newPicture;
+        }
+
+        return new ChooseSoundedPictureExercise(namedPictures);
     }
 
 

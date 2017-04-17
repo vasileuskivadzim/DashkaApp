@@ -134,7 +134,7 @@ public class Vocalizer {
         }
     }
 
-    private static void playSound(@RawRes int soundRes, Context context, MediaPlayer.OnCompletionListener completionListener) {
+    public static void playSound(@RawRes int soundRes, Context context, MediaPlayer.OnCompletionListener completionListener) {
         MediaPlayer mPlayer = MediaPlayer.create(context, soundRes);
         mPlayer.setOnCompletionListener(completionListener);
         mPlayer.start();
