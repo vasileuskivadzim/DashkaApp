@@ -13,21 +13,20 @@ import android.util.Log;
 public class ShapeColoringExercise {
     public enum Shapes {SQUARE, CIRCLE, TRIANGLE, STAR, RECTANGLE, HEXAGON};
 
-    public @ColorRes int[] colors;
+
     public Shapes[] shapes;
     private String[] shapeNames;
-    private String[] colorNames;
+    public Color[] colors;
 
     private int[] shuffledShapesIndexes;
     private int[] shuffledColorsIndexes;
     private boolean[] rightColoring;
 
 
-    public ShapeColoringExercise(Shapes[] shapes, String[] shapeNames, @ColorRes int[] colors, String[] colorNames){
+    public ShapeColoringExercise(Shapes[] shapes, String[] shapeNames, Color[] colors){
         this.colors = colors;
         this.shapes = shapes;
         this.shapeNames = shapeNames;
-        this.colorNames = colorNames;
 
         this.formIndexes();
         this.initColoring();
@@ -73,7 +72,7 @@ public class ShapeColoringExercise {
 
     public String colorNameAtIndex(int index) {
         int trueColorIndex = this.shuffledColorsIndexes[index];
-        String colorName = this.colorNames[trueColorIndex];
+        String colorName = this.colors[trueColorIndex].name;
         return colorName;
     }
 
@@ -85,7 +84,7 @@ public class ShapeColoringExercise {
 
     public void drawShapeAtIndex(int index, int color){
         int trueColorIndex = this.shuffledColorsIndexes[index];
-        int trueColor = this.colors[trueColorIndex];
+        int trueColor = this.colors[trueColorIndex].color;
         this.rightColoring[index] = (color == trueColor);
     }
 

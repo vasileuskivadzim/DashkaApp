@@ -47,6 +47,8 @@
         <activity
             android:name=".RelateTapableExerciseActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".AquariumActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

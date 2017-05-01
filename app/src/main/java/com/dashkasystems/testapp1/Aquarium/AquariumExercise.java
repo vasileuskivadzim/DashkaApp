@@ -1,0 +1,130 @@
+package com.dashkasystems.testapp1.Aquarium;
+
+import android.util.Log;
+
+import com.dashkasystems.testapp1.Color;
+import com.dashkasystems.testapp1.RandomHelper;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * Created by pandasystems on 5/1/17.
+ */
+
+public class AquariumExercise {
+    private Aquarium currentAquarium;
+    private Aquarium populatedAquarium;
+
+    private Inhabitant[] inhabitCandidates;
+    private int rightInhabitCandidateIndex;
+
+
+    private int stepNumber = 0;
+    private List<Inhabitant> stepSequence = new ArrayList<>();
+
+
+    public AquariumExercise() {
+        populate();
+        generateInhabitCandidates();
+    }
+
+    public int getDimension() {
+        return 3;
+    }
+
+    public int getStepNumber() {
+        return stepNumber;
+    }
+
+    public int getRightInhabitCandidateIndex() {
+        return rightInhabitCandidateIndex;
+    }
+
+    public Inhabitant[] getInhabitCandidates() {
+        return inhabitCandidates;
+    }
+
+    public boolean nextStep() {
+        stepNumber++;
+        boolean isEnd = stepNumber == stepSequence.size();
+        Log.d("IS END", isEnd + "");
+        Log.d("Size", stepSequence.size() + "");
+        if (!isEnd) {
+            generateInhabitCandidates();
+        }
+        return !isEnd;
+    }
+
+    private void generateInhabitCandidates() {
+        int candidatesCount = 3;
+        rightInhabitCandidateIndex = RandomHelper.getInt(candidatesCount);
+
+        inhabitCandidates = new Inhabitant[candidatesCount];
+        Inhabitant rightInhabitant = stepSequence.get(stepNumber);
+        List<Color> colors = new ArrayList<>(Arrays.asList(Color.all()));
+        if (rightInhabitant.getClass() == Fish.class) {
+            Fish fish = (Fish) rightInhabitant;
+            colors.remove(fish.color);
+        }
+
+        for (int i = 0; i < candidatesCount; i++) {
+            if (i == rightInhabitCandidateIndex) {
+                inhabitCandidates[i] = rightInhabitant;
+            } else {
+                int colorIndex = RandomHelper.getInt(colors.size());
+                Color color = colors.get(colorIndex);
+                inhabitCandidates[i] = new Fish(color);
+                colors.remove(colorIndex);
+            }
+        }
+
+    }
+
+    public List<Integer> targetIndexesForCurrentStep() {
+        Inhabitant inhabitant = stepSequence.get(stepNumber);
+        return populatedAquarium.occupiedPlacesByInhabitant(inhabitant);
+    }
+
+
+    private void populate() {
+        populatedAquarium = new Aquarium(3);
+
+        List<Integer> freePlantPlaces = populatedAquarium.freePlacesForSpot(Inhabitant.Spot.BOTTOM_DOUBLE);
+        int plantRootIndex = RandomHelper.getInt(freePlantPlaces.size());
+        Plant bigPlant = new Plant(Inhabitant.Spot.BOTTOM_DOUBLE);
+        populatedAquarium.addInhabitant(bigPlant, freePlantPlaces.get(plantRootIndex));
+
+        stepSequence.add(bigPlant);
+
+        List<Integer> freeSmallPlantPlaces = populatedAquarium.freePlacesForSpot(Inhabitant.Spot.BOTTOM);
+        Log.d("Free places", freeSmallPlantPlaces.toString());
+        int smallPlantRootIndex = RandomHelper.getInt(freeSmallPlantPlaces.size());
+        Plant smallPlant = new Plant(Inhabitant.Spot.BOTTOM);
+        populatedAquarium.addInhabitant(smallPlant, freeSmallPlantPlaces.get(smallPlantRootIndex));
+
+        stepSequence.add(smallPlant);
+
+        List<Integer> freeFishPlaces = populatedAquarium.freePlacesForSpot(Inhabitant.Spot.ANY);
+        List<Color> colors = new ArrayList<>(Arrays.asList(Color.all()));
+        int fishCount = 4;
+        for (int i = 0; i < fishCount; i++) {
+            int colorIndex = RandomHelper.getInt(colors.size());
+            Color color = colors.get(colorIndex);
+            Fish fish = new Fish(color);
+
+            int freeIndex = RandomHelper.getInt(freeFishPlaces.size());
+            populatedAquarium.addInhabitant(fish, freeFishPlaces.get(freeIndex));
+
+            colors.remove(colorIndex);
+            freeFishPlaces.remove(freeIndex);
+
+            stepSequence.add(fish);
+        }
+    }
+
+
+}

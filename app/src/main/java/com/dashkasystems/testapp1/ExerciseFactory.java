@@ -149,14 +149,13 @@ public class ExerciseFactory {
             ShapeColoringExercise.Shapes.STAR, ShapeColoringExercise.Shapes.RECTANGLE,
             ShapeColoringExercise.Shapes.HEXAGON };
     private static String[] shapeNames = {"Круг", "Квадрат", "Треугольник", "Звезда", "Прямоугольник", "Шестиугольник"};
-    private static String[] colorNames = {"Красный", "Оранжевый", "Жёлтый", "Зелёный", "Голубой", "Синий"};
-    @ColorRes
-    private static int[] colors = {R.color.red, R.color.orange, R.color.yellow,
-            R.color.green, R.color.blue, R.color.darkBlue};
+
+    private static Color[] colors = {Color.red(), Color.orange(), Color.yellow(),
+            Color.green(), Color.blue(), Color.darkBlue()};
 
 
     public static ShapeColoringExercise shapeColoringExercise() {
-        return new ShapeColoringExercise(shapes, shapeNames, colors, colorNames);
+        return new ShapeColoringExercise(shapes, shapeNames, colors);
     }
 
     private static String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"};
