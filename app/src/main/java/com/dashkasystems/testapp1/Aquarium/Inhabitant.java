@@ -12,8 +12,8 @@ public class Inhabitant {
         ANY, BOTTOM, BOTTOM_DOUBLE
     };
 
-
-    //public int rootPlace;
     public Spot spot;
+
+    public String verbalDescription() {return "";}
 
 }

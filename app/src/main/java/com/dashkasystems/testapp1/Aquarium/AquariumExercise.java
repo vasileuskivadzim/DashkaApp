@@ -23,13 +23,15 @@ public class AquariumExercise {
     private int rightInhabitCandidateIndex;
 
 
-    private int stepNumber = 0;
+    private int stepNumber = -1;
     private List<Inhabitant> stepSequence = new ArrayList<>();
 
 
     public AquariumExercise() {
+        populatedAquarium = new Aquarium(3);
+        currentAquarium = new Aquarium(3);
         populate();
-        generateInhabitCandidates();
+        nextStep();
     }
 
     public int getDimension() {
@@ -51,9 +53,13 @@ public class AquariumExercise {
     public boolean nextStep() {
         stepNumber++;
         boolean isEnd = stepNumber == stepSequence.size();
-        Log.d("IS END", isEnd + "");
-        Log.d("Size", stepSequence.size() + "");
         if (!isEnd) {
+            Inhabitant curInhabitant = stepSequence.get(stepNumber);
+            List<Integer> indexes = populatedAquarium.occupiedPlacesByInhabitant(curInhabitant);
+            Integer rootIndex = indexes.get(indexes.size()-1);
+            currentAquarium.addInhabitant(curInhabitant, rootIndex);
+            currentAquarium.relationsForInhabitant(curInhabitant);
+
             generateInhabitCandidates();
         }
         return !isEnd;
@@ -91,8 +97,6 @@ public class AquariumExercise {
 
 
     private void populate() {
-        populatedAquarium = new Aquarium(3);
-
         List<Integer> freePlantPlaces = populatedAquarium.freePlacesForSpot(Inhabitant.Spot.BOTTOM_DOUBLE);
         int plantRootIndex = RandomHelper.getInt(freePlantPlaces.size());
         Plant bigPlant = new Plant(Inhabitant.Spot.BOTTOM_DOUBLE);
@@ -101,7 +105,6 @@ public class AquariumExercise {
         stepSequence.add(bigPlant);
 
         List<Integer> freeSmallPlantPlaces = populatedAquarium.freePlacesForSpot(Inhabitant.Spot.BOTTOM);
-        Log.d("Free places", freeSmallPlantPlaces.toString());
         int smallPlantRootIndex = RandomHelper.getInt(freeSmallPlantPlaces.size());
         Plant smallPlant = new Plant(Inhabitant.Spot.BOTTOM);
         populatedAquarium.addInhabitant(smallPlant, freeSmallPlantPlaces.get(smallPlantRootIndex));

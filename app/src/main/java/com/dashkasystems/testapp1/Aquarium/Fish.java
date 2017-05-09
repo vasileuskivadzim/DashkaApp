@@ -9,11 +9,13 @@ import com.dashkasystems.testapp1.Color;
 public class Fish extends Inhabitant {
     public Color color;
 
-    Fish(Color color/*, int place*/) {
+    Fish(Color color) {
         this.color = color;
-        //this.rootPlace = place;
-
         this.spot = Spot.ANY;
     }
 
+    @Override
+    public String verbalDescription() {
+        return color.name + " рыбка";
+    }
 }

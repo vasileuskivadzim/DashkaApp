@@ -5,9 +5,16 @@ package com.dashkasystems.testapp1.Aquarium;
  */
 
 public class Plant extends Inhabitant {
-    Plant(/*int places,*/ Spot spot) {
-        //this.rootPlace = places;
+    Plant(Spot spot) {
         this.spot = spot;
     }
 
+    @Override
+    public String verbalDescription() {
+        if (this.spot == Spot.BOTTOM_DOUBLE) {
+            return "большое растение";
+        } else {
+            return "маленькое растение";
+        }
+    }
 }
