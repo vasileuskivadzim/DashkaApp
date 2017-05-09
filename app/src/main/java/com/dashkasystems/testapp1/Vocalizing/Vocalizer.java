@@ -69,18 +69,18 @@ public class Vocalizer {
         aMap.put("Треугольник", R.raw.triangle);
         aMap.put("Шестиугольник", R.raw.hexagon);
 
-        aMap.put("Белый", R.raw.white);
-        aMap.put("Белая", R.raw.whitef);
-        aMap.put("Жёлтый", R.raw.yellow);
-        aMap.put("Жёлтая", R.raw.yellowf);
-        aMap.put("Зелёный", R.raw.green);
-        aMap.put("Зелёная", R.raw.greenf);
-        aMap.put("Красная", R.raw.redf);
-        aMap.put("Красный", R.raw.red);
-        aMap.put("Оранжевая", R.raw.orangef);
-        aMap.put("Оранжевый", R.raw.orange);
-        aMap.put("Синий", R.raw.blue);
-        aMap.put("Синяя", R.raw.bluef);
+        aMap.put("белый", R.raw.white);
+        aMap.put("белая", R.raw.whitef);
+        aMap.put("жёлтый", R.raw.yellow);
+        aMap.put("жёлтая", R.raw.yellowf);
+        aMap.put("зелёный", R.raw.green);
+        aMap.put("зелёная", R.raw.greenf);
+        aMap.put("красная", R.raw.redf);
+        aMap.put("красный", R.raw.red);
+        aMap.put("оранжевая", R.raw.orangef);
+        aMap.put("оранжевый", R.raw.orange);
+        aMap.put("синий", R.raw.blue);
+        aMap.put("синяя", R.raw.bluef);
 
         aMap.put("Один", R.raw.one);
         aMap.put("Одна", R.raw.onef);

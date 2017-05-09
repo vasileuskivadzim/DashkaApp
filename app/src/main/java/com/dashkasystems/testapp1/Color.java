@@ -27,26 +27,26 @@ public class Color {
     }
 
     public static Color red() {
-        return new Color(R.color.red, "Красный");
+        return new Color(R.color.red, "красный");
     }
 
     public static Color orange() {
-        return new Color(R.color.orange, "Оранжевый");
+        return new Color(R.color.orange, "оранжевый");
     }
 
     public static Color yellow() {
-        return new Color(R.color.yellow, "Жёлтый");
+        return new Color(R.color.yellow, "жёлтый");
     }
 
     public static Color green() {
-        return new Color(R.color.green, "Зелёный");
+        return new Color(R.color.green, "зелёный");
     }
 
     public static Color blue() {
-        return new Color(R.color.blue, "Голубой");
+        return new Color(R.color.blue, "голубой");
     }
 
     public static Color darkBlue() {
-        return new Color(R.color.darkBlue, "Синий");
+        return new Color(R.color.darkBlue, "синий");
     }
 }

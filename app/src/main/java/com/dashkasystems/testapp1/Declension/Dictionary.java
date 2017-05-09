@@ -196,35 +196,95 @@ public class Dictionary {
         aMap.put("Юла", yule);
 
 
+        ///
+        PartOfSpeech fish = new Noun(new NumeralSpeechCase("рыбка", "рыбки"),
+                new NumeralSpeechCase("рыбки", "рыбок"),
+                null,
+                new NumeralSpeechCase("рыбку", "рыбок"),
+                new NumeralSpeechCase("рыбкой", "рыбками"),
+                null,
+                PartOfSpeechKind.Feminine);
+        aMap.put("рыбка", fish);
+
+        PartOfSpeech waterPlant = new Noun(new NumeralSpeechCase("растение", "растения"),
+                new NumeralSpeechCase("растения", "растений"),
+                null,
+                new NumeralSpeechCase("растение", "растения"),
+                new NumeralSpeechCase("растением", "растениями"),
+                null,
+                PartOfSpeechKind.Neuter);
+        aMap.put("растение", waterPlant);
 
 
 
         //Adjective
-        PartOfSpeech red = new Adjective(new KindNumeralSpeechCase("Красный", "Красная", "Красное", "Красные"),
-                null, null, null, null, null);
-        aMap.put("Красный", red);
+        PartOfSpeech red = new Adjective(new KindNumeralSpeechCase("красный", "красная", "красное", "красные"),
+                new KindNumeralSpeechCase("красного", "красной", "красного", "красных"),
+                null,
+                new KindNumeralSpeechCase("красный", "красную", "красное", "красные"),
+                new KindNumeralSpeechCase("красным", "красной", "красным", "красными"),
+                null);
+        aMap.put("красный", red);
 
-        PartOfSpeech orange = new Adjective(new KindNumeralSpeechCase("Оранжевый", "Оранжевая", "Оранжевое", "Оранжевые"),
-                null, null, null, null, null);
-        aMap.put("Оранжевый", orange);
+        PartOfSpeech orange = new Adjective(new KindNumeralSpeechCase("оранжевый", "оранжевая", "оранжевое", "оранжевые"),
+                new KindNumeralSpeechCase("оранжевого", "оранжевой", "оранжевого", "оранжевых"),
+                null,
+                new KindNumeralSpeechCase("оранжевый", "оранжевую", "оранжевое", "оранжевые"),
+                new KindNumeralSpeechCase("оранжевым", "оранжевой", "оранжевым", "оранжевыми"),
+                null);
+        aMap.put("оранжевый", orange);
 
-        PartOfSpeech blue = new Adjective(new KindNumeralSpeechCase("Синий", "Синяя", "Синее", "Синие"),
-                null, null, null, null, null);
-        aMap.put("Синий", blue);
+        PartOfSpeech blue = new Adjective(new KindNumeralSpeechCase("синий", "синяя", "синее", "синие"),
+                new KindNumeralSpeechCase("синего", "синей", "синего", "синих"),
+                null,
+                new KindNumeralSpeechCase("синий", "синюю", "синее", "синие"),
+                new KindNumeralSpeechCase("синим", "синей", "синим", "синими"),
+                null);
+        aMap.put("синий", blue);
 
-        PartOfSpeech green = new Adjective(new KindNumeralSpeechCase("Зелёный", "Зелёная", "Зелёное", "Зелёные"),
-                null, null, null, null, null);
-        aMap.put("Зелёный", green);
+        PartOfSpeech green = new Adjective(new KindNumeralSpeechCase("зелёный", "зелёная", "зелёное", "зелёные"),
+                new KindNumeralSpeechCase("зелёного", "зелёной", "зелёного", "зелёных"),
+                null,
+                new KindNumeralSpeechCase("зелёный", "зелёную", "зелёное", "зелёные"),
+                new KindNumeralSpeechCase("зелёным", "зелёной", "зелёным", "зелёными"),
+                null);
+        aMap.put("зелёный", green);
 
-        PartOfSpeech white = new Adjective(new KindNumeralSpeechCase("Белый", "Белая", "Белое", "Белые"),
-                null, null, null, null, null);
-        aMap.put("Белый", white);
+        PartOfSpeech white = new Adjective(new KindNumeralSpeechCase("белый", "белая", "белое", "белые"),
+                new KindNumeralSpeechCase("белого", "белой", "белого", "белых"),
+                null,
+                new KindNumeralSpeechCase("белый", "белую", "белое", "белые"),
+                new KindNumeralSpeechCase("белым", "белой", "белым", "белыми"),
+                null);
+        aMap.put("белый", white);
 
-        PartOfSpeech yellow = new Adjective(new KindNumeralSpeechCase("Жёлтый", "Жёлтая", "Жёлтое", "Жёлтые"),
-                null, null, null, null, null);
-        aMap.put("Жёлтый", yellow);
+        PartOfSpeech yellow = new Adjective(new KindNumeralSpeechCase("жёлтый", "жёлтая", "жёлтое", "жёлтые"),
+                new KindNumeralSpeechCase("жёлтого", "жёлтой", "жёлтого", "жёлтых"),
+                null,
+                new KindNumeralSpeechCase("жёлтый", "жёлтую", "жёлтое", "жёлтые"),
+                new KindNumeralSpeechCase("жёлтым", "жёлтой", "жёлтым", "жёлтыми"),
+                null);
+        aMap.put("жёлтый", yellow);
 
 
+
+
+        ///
+        PartOfSpeech big = new Adjective(new KindNumeralSpeechCase("большой", "большая", "большое", "большие"),
+                new KindNumeralSpeechCase("большого", "большой", "большого", "больших"),
+                null,
+                new KindNumeralSpeechCase("большой", "большую", "большое", "большие"),
+                new KindNumeralSpeechCase("большим", "большой", "большим", "большими"),
+                null);
+        aMap.put("большой", big);
+
+        PartOfSpeech small = new Adjective(new KindNumeralSpeechCase("маленький", "маленькая", "маленькое", "маленькие"),
+                new KindNumeralSpeechCase("маленького", "маленькой", "маленького", "маленьких"),
+                null,
+                new KindNumeralSpeechCase("маленький", "маленькую", "маленькое", "маленькие"),
+                new KindNumeralSpeechCase("маленьким", "маленькой", "маленьким", "маленькими"),
+                null);
+        aMap.put("маленький", small);
 
 
 

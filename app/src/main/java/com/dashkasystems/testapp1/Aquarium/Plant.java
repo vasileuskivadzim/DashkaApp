@@ -12,9 +12,9 @@ public class Plant extends Inhabitant {
     @Override
     public String verbalDescription() {
         if (this.spot == Spot.BOTTOM_DOUBLE) {
-            return "большое растение";
+            return "большой растение";
         } else {
-            return "маленькое растение";
+            return "маленький растение";
         }
     }
 }

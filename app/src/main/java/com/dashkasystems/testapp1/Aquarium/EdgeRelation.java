@@ -1,5 +1,9 @@
 package com.dashkasystems.testapp1.Aquarium;
 
+import com.dashkasystems.testapp1.Declension.Collocation;
+
+import static com.dashkasystems.testapp1.Declension.PartOfSpeechCase.Accusative;
+
 /**
  * Created by pandasystems on 5/9/17.
  */
@@ -14,7 +18,8 @@ public class EdgeRelation extends Relation {
 
     @Override
     public String verbalDescription() {
-        return object.verbalDescription() + " в " + edgesDescription();
+        Collocation objectDescription = new Collocation(object.verbalDescription(), Accusative);
+        return objectDescription.description() + " в " + edgesDescription();
     }
 
     private String edgesDescription () {
