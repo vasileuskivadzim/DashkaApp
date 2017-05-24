@@ -1,34 +1,52 @@
 package com.dashkasystems.testapp1;
 
-import android.content.res.TypedArray;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import ru.yandex.speechkit.Vocalizer;
+import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseImageExerciseActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
 
+    protected TextView captionTextView;
+    protected Button rememberButton;
+
     protected ChooseImageExercise exercise;
+    protected boolean exerciseStarted = false;
+    protected List<Integer> tappedItems = new ArrayList<>();
+    protected int exerciseStep = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_image_exercise);
 
-        String exerciseTitle = getIntent().getStringExtra("CHOSEN_EXERCISE_INTENT_KEY");
+        captionTextView = (TextView) findViewById(R.id.choose_image_exercise_caption);
 
-        TextView captionTextView = (TextView) findViewById(R.id.choose_image_exercise_caption);
-        captionTextView.setText(exerciseTitle);
 
-        exercise = new ChooseImageExercise();
+        String soundsType = getIntent().getStringExtra("Sounds");
+        if (soundsType != null) {
+            exercise = ExerciseFactory.soundsExercise(soundsType, 4);
+            captionTextView.setText("Нажми на картинку и запомни звук");
+        } else {
+            exercise = ExerciseFactory.chooseNamedPictureExercise(4);
+            captionTextView.setText("Нажми на животное и запомни его название");
+        }
+
+        rememberButton = (Button) findViewById(R.id.rememberBtn);
+        rememberButton.setOnClickListener(this);
+
+
 
         ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.choose_image_exersize_speak_button);
         vocalizeBtn.setOnClickListener(this);
@@ -50,21 +68,23 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
                 shapeDim);
         layoutParams.setMargins(10, 10, 10, 0);
 
-        int picturesCount = this.exercise.namedPictures.length;
-        int rowCount = picturesCount / colCount;
+        int picturesCount = this.exercise.getPicturesCount();
+        int rowCount = (int) Math.ceil( picturesCount / (double) colCount);
 
         for(int row = 0; row < rowCount; row++) {
             TableRow newRow = new TableRow(this);
             for (int col = 0; col < colCount; col++) {
                 int index = row * colCount + col;
 
-                ImageView image = new ImageView(this);
-                image.setImageResource(this.exercise.namedPictures[index].picture);
-                image.setLayoutParams(layoutParams);
-                image.setOnTouchListener(this);
-                image.setId(index);
+                if (index < picturesCount) {
+                    ImageView image = new ImageView(this);
+                    image.setImageResource(this.exercise.getPictureResAtIndex(index));
+                    image.setLayoutParams(layoutParams);
+                    image.setOnTouchListener(this);
+                    image.setId(index);
 
-                newRow.addView(image, col);
+                    newRow.addView(image, col);
+                }
             }
 
             table.addView(newRow, row);
@@ -73,15 +93,42 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
 
     @Override
     public void onClick(View v) {
-        String name = this.exercise.namedPictures[this.exercise.getRightAnswerIndex()].name;
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", name, true);
-        vocalizer.start();
+        if (v.getId() == R.id.rememberBtn) {
+            exerciseStarted = true;
+            captionTextView.setText("Послушай и выбери картинку");
+            v.setVisibility(View.INVISIBLE);
+        } else {
+            vocalizeAtIndex(this.exercise.getRightAnswerIndex());
+        }
+    }
+
+    private void vocalizeAtIndex(int index) {
+        this.exercise.vocalizeAtIndex(index, this);
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        boolean result = v.getId() == this.exercise.getRightAnswerIndex();
-        ToastHelper.showToast(this, result);
+        int imageIndex = v.getId();
+        if (exerciseStarted) {
+            boolean right = (imageIndex == this.exercise.getRightAnswerIndex());
+            if (right) {
+                exerciseStep++;
+                if (exerciseStep == 5) {
+                    captionTextView.setText("Упражнение выполнено");
+                } else {
+                    this.exercise.newRightAnswer();
+                }
+            }
+            ToastHelper.showToast(this, right);
+        } else {
+            vocalizeAtIndex(imageIndex);
+            if (!tappedItems.contains(imageIndex)) {
+                tappedItems.add(imageIndex);
+                if (tappedItems.size() == this.exercise.getPicturesCount()) {
+                    rememberButton.setVisibility(View.VISIBLE);
+                }
+            }
+        }
 
         return false;
     }

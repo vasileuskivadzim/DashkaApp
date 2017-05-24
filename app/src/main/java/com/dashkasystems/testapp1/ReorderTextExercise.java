@@ -12,9 +12,11 @@ public class ReorderTextExercise {
     public String[] sentences;
     public int[] shuffledIndexes;
     private String initialText;
+    private String title;
 
-    public ReorderTextExercise(String text){
+    public ReorderTextExercise(String text, String title){
         this.initialText = text;
+        this.title = title;
 
         Pattern regExp = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
         Matcher regExpMatcher = regExp.matcher(text);
@@ -31,8 +33,10 @@ public class ReorderTextExercise {
     public String getText() {
         return initialText;
     }
+    public String getTitle() { return title; }
 
-    public void formIndexes() {
+
+    private void formIndexes() {
         shuffledIndexes = new int[sentences.length];
         for (int i = 0; i < sentences.length; i++) {
             shuffledIndexes[i] = i;

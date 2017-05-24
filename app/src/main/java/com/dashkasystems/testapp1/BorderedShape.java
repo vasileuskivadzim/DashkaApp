@@ -20,8 +20,9 @@ public class BorderedShape extends ShapeDrawable {
         fillpaint.setColor(fill);
         strokepaint = new Paint(fillpaint);
         strokepaint.setStyle(Paint.Style.STROKE);
-        this.strokeWidth = strokeWidth;
-        strokepaint.setStrokeWidth(strokeWidth);
+        float density = ScreenHelper.getDensity();
+        this.strokeWidth = (int) ((float)strokeWidth * density);//strokeWidth;
+        strokepaint.setStrokeWidth(this.strokeWidth);
         strokepaint.setColor(stroke);
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Dashka AppV1</string>
+    <string name="app_name">Quick to Speak</string>
 
     <string name="choose_category_caption">Выберите категорию</string>
     <string name="nature_btn_title">Природа</string>

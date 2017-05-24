@@ -12,10 +12,12 @@ import android.media.Image;
 import android.support.annotation.DrawableRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Size;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +29,11 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
     RelativeLayout mainSceneLayout;
     ImageView mainImageView;
     CompileSceneExercise exercise;
+
+    String IMAGE_ALREADY_INSERTED_TAG = "IMAGE_ALREADY_INSERTED";
+
+    int itemsInsertedOnCurrentStep = 0;
+    int exerciseStep = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,18 +48,81 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
         this.setupExercise();
         this.setupMainImage();
         this.setupSelectableItems();
-        this.setupTargetViews();
+        this.setUpTreeObserver();
+    }
+
+    private void setUpTreeObserver() {
+        ViewTreeObserver viewTreeObserver = mainImageView.getViewTreeObserver();
+        if (viewTreeObserver.isAlive()) {
+            viewTreeObserver.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    mainImageView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    int viewWidth = mainImageView.getWidth();
+                    int viewHeight = mainImageView.getHeight();
+                    exercise.setMainSceneSize(new Size(viewWidth, viewHeight));
+                    setupTargetViews();
+                }
+            });
+        }
     }
 
     private void setupExercise() {
-        CompileSceneItem item1 = new CompileSceneItem(R.drawable.car, "CAR", new Point(100, 200), new Size(200, 200));
-        CompileSceneItem item2 = new CompileSceneItem(R.drawable.globe, "GLOBE", new Point(400, 200), new Size(200, 200));
-        CompileSceneItem item3 = new CompileSceneItem(R.drawable.radio, "RADIO", new Point(100, 500), new Size(200, 200));
-        CompileSceneItem item4 = new CompileSceneItem(R.drawable.notebook, "NOTEBOOK", new Point(400, 500), new Size(200, 200));
-        CompileSceneItem[] items = {item1, item2, item3, item4 };
-        @DrawableRes int mainImage = R.drawable.polki;
-        this.exercise = new CompileSceneExercise(items, mainImage);
+        DARect[] emptyFrame = new DARect[0];
 
+        //first step
+        DARect[] oakFrame = new DARect[1];
+        oakFrame[0] = new DARect(0, 200, 200*3.2, 278*3.2);
+        CompileSceneItem item1 = new CompileSceneItem(R.drawable.oak, "OAK", oakFrame);
+        CompileSceneItem item2 = new CompileSceneItem(R.drawable.spruce, "SPRUCE", emptyFrame);
+
+        //second step
+        DARect[] basketFrames = new DARect[2];
+        basketFrames[0] = new DARect(600, 850, 170, 170);
+        basketFrames[1] = new DARect(890, 850, 170, 170);
+        CompileSceneItem item3 = new CompileSceneItem(R.drawable.portfolio, "PORTFOLIO", emptyFrame);
+        CompileSceneItem item4 = new CompileSceneItem(R.drawable.basket, "BASKET", basketFrames);
+
+        //third step
+        DARect[] mushroomFrames = new DARect[6];
+        mushroomFrames[0] = new DARect(600, 860, 304/3, 352/3);
+        mushroomFrames[1] = new DARect(625, 860, 304/3, 352/3);
+        mushroomFrames[2] = new DARect(650, 860, 304/3, 352/3);
+        mushroomFrames[3] = new DARect(675, 860, 304/3, 352/3);
+        mushroomFrames[4] = new DARect(890, 860, 304/3, 352/3);
+        mushroomFrames[5] = new DARect(940, 860, 304/3, 352/3);
+
+        CompileSceneItem item5 = new CompileSceneItem(R.drawable.cone, "CONE", emptyFrame);
+        CompileSceneItem item6 = new CompileSceneItem(R.drawable.mushroom, "MUSHROOM", mushroomFrames);
+
+        //fourth step
+        DARect[] squirrelFrame = new DARect[1];
+        squirrelFrame[0] = new DARect(150, 720, 372*0.4, 378*0.4);
+        CompileSceneItem item7 = new CompileSceneItem(R.drawable.squirrel, "SQUIRREL", squirrelFrame);
+        CompileSceneItem item8 = new CompileSceneItem(R.drawable.sparrow, "SPARROW", emptyFrame);
+
+        //fifth step
+        DARect[] nutFrame = new DARect[1];
+        nutFrame[0] = new DARect(269, 773, 280*0.2, 256*0.2);
+        CompileSceneItem item9 = new CompileSceneItem(R.drawable.nut, "NUT", nutFrame);
+        CompileSceneItem item10 = new CompileSceneItem(R.drawable.cone, "CONE", emptyFrame);
+
+        //sixth step
+        DARect[] woodpeckerFrame = new DARect[1];
+        woodpeckerFrame[0] = new DARect(320, 405, 342*0.4, 582*0.4);
+        CompileSceneItem item11 = new CompileSceneItem(R.drawable.sparrow, "SPARROW", emptyFrame);
+        CompileSceneItem item12 = new CompileSceneItem(R.drawable.woodpecker, "WOODPECKER", woodpeckerFrame);
+
+
+        CompileSceneItem[][] items = {{item1, item2},
+                                    {item3, item4},
+                                    {item5, item6},
+                                    {item7, item8},
+                                    {item9, item10},
+                                    {item11, item12}};
+        @DrawableRes int mainImage = R.drawable.boywithgirl;
+        this.exercise = new CompileSceneExercise(items, mainImage);
+        this.exercise.setNormalizatorSize(new Size(1080, 1284));
     }
 
 
@@ -64,7 +134,7 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
     protected void setupSelectableItems() {
         float screenWidth = ScreenHelper.getPXWidth(this);
 
-        int itemsCount = exercise.sceneItems.length;
+        int itemsCount = exercise.sceneItems[exerciseStep].length;
         int shapeDim = (int) ((screenWidth / itemsCount) - 40);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(shapeDim,
                 ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -72,35 +142,35 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
         for (int i = 0; i < itemsCount; i++) {
 
             ImageView imageView = new ImageView(this);
-            Drawable drawable = this.getResources().getDrawable(exercise.sceneItems[i].drawable);
+            Drawable drawable = this.getResources().getDrawable(exercise.sceneItems[exerciseStep][i].drawable);
             imageView.setImageDrawable(drawable);
-            imageView.setTag(exercise.sceneItems[i].name);
+            imageView.setTag(exercise.sceneItems[exerciseStep][i].name);
             imageView.setLayoutParams(layoutParams);
             imageView.setOnLongClickListener(this);
 
-            imageView.setBackgroundColor(getResources().getColor(R.color.orange));
-
-
             itemSelectorLayout.addView(imageView);
         }
-        itemSelectorLayout.setBackgroundColor(getResources().getColor(R.color.darkBlue));
+        itemSelectorLayout.setBackgroundColor(getResources().getColor(R.color.lightOrange));
     }
 
 
     protected void setupTargetViews() {
-        int itemsCount = exercise.sceneItems.length;
+        int itemsCount = exercise.sceneItems[exerciseStep].length;
         for (int i = 0; i < itemsCount; i++) {
-            Point location = exercise.sceneItems[i].location;
-            Size size = exercise.sceneItems[i].size;
-            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.getWidth(), size.getHeight());
-            layoutParams.leftMargin = location.x;
-            layoutParams.topMargin = location.y;
+            for (int j = 0; j < exercise.sceneItems[exerciseStep][i].frames.length; j++) {
+                DARect frame = exercise.getFrameForStep(exerciseStep, i, j);
+                DAPoint location = frame.origin;
+                DASize size = frame.size;
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.intWidth(), size.intHeight());
+                layoutParams.leftMargin = location.intX();
+                layoutParams.topMargin = location.intY();
 
-            ImageView imageView = new ImageView(this);
-            imageView.setLayoutParams(layoutParams);
-            imageView.setTag(exercise.sceneItems[i].name);
-            imageView.setOnDragListener(this);
-            mainSceneLayout.addView(imageView);
+                ImageView imageView = new ImageView(this);
+                imageView.setLayoutParams(layoutParams);
+                imageView.setTag(exercise.sceneItems[exerciseStep][i].name);
+                imageView.setOnDragListener(this);
+                mainSceneLayout.addView(imageView);
+            }
         }
     }
 
@@ -180,24 +250,33 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
                 return true;
 
             case DragEvent.ACTION_DROP:
-
-                // Gets the item containing the dragged data
                 ClipData.Item item = event.getClipData().getItemAt(0);
                 String name = item.getText().toString();
                 if ( name.equals(v.getTag()) ) {
-                    int itemsCount = this.exercise.sceneItems.length;
+                    int itemsCount = this.exercise.sceneItems[exerciseStep].length;
                     for (int i = 0; i < itemsCount; i++) {
-                        if (this.exercise.sceneItems[i].name.equals(name)) {
-                            imageView.setImageDrawable(getDrawable(this.exercise.sceneItems[i].drawable));
+                        if (this.exercise.sceneItems[exerciseStep][i].name.equals(name)) {
+                            v.setTag(IMAGE_ALREADY_INSERTED_TAG);
+                            this.itemsInsertedOnCurrentStep++;
+                            imageView.setImageDrawable(getDrawable(this.exercise.sceneItems[exerciseStep][i].drawable));
                         }
                     }
-
-
                 }
-                // Invalidates the view to force a redraw
                 v.invalidate();
-
-                // Returns true. DragEvent.getResult() will return true.
+                int possibleItemsToInsert = 0;
+                int itemsCount = this.exercise.sceneItems[exerciseStep].length;
+                for (int i = 0; i < itemsCount; i++) {
+                    possibleItemsToInsert += this.exercise.sceneItems[exerciseStep][i].frames.length;
+                }
+                if (itemsInsertedOnCurrentStep >= possibleItemsToInsert) {
+                    itemsInsertedOnCurrentStep = 0;
+                    exerciseStep++;
+                    if (exerciseStep < this.exercise.sceneItems.length) {
+                        itemSelectorLayout.removeAllViewsInLayout();
+                        this.setupSelectableItems();
+                        this.setupTargetViews();
+                    }
+                }
                 return true;
 
             case DragEvent.ACTION_DRAG_ENDED:

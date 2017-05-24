@@ -1,17 +1,25 @@
 package com.dashkasystems.testapp1;
 
 import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.Shape;
 import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 
-public class ShapeColoringExerciseActivity extends AppCompatActivity implements View.OnTouchListener {
+import com.dashkasystems.testapp1.Declension.Collocation;
+import com.dashkasystems.testapp1.Vocalizing.CollocationVocalizer;
+
+import ru.yandex.speechkit.Vocalizer;
+
+public class ShapeColoringExerciseActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 
     private  @ColorRes int[] palette = {R.color.red, R.color.orange, R.color.yellow, R.color.green, R.color.blue,
             R.color.darkBlue, R.color.purple, R.color.white, R.color.black, R.color.darkGreen};
@@ -31,6 +39,16 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
         this.setupExercise();
         this.configureShapeTable();
         this.configurePaletteView();
+
+
+        TextView captionLabel = (TextView) findViewById(R.id.titleTextView);
+        captionLabel.setText(getIntent().getStringExtra("CHOSEN_EXERCISE_INTENT_KEY"));
+
+        ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.speakBtn);
+        vocalizeBtn.setOnClickListener(this);
+
+        Button checkBtn = (Button) findViewById(R.id.checkBtn);
+        checkBtn.setOnClickListener(this);
     }
 
 
@@ -105,13 +123,7 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
     }
 
     protected void setupExercise() {
-        ShapeColoringExercise.Shapes[] shapes = {ShapeColoringExercise.Shapes.CIRCLE,
-                ShapeColoringExercise.Shapes.SQUARE, ShapeColoringExercise.Shapes.TRIANGLE,
-                ShapeColoringExercise.Shapes.STAR, ShapeColoringExercise.Shapes.RECTANGLE,
-                ShapeColoringExercise.Shapes.HEXAGON };
-        @ColorRes int[] colors = {R.color.red, R.color.orange, R.color.yellow,
-                R.color.green, R.color.blue, R.color.darkBlue};
-        this.exercise = new ShapeColoringExercise(shapes, colors);
+        this.exercise = ExerciseFactory.shapeColoringExercise();
     }
 
 
@@ -145,11 +157,46 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
 
     private void fillShape(View v, int index) {
         ImageView imageView = (ImageView) v;
-        int color = getResources().getColor(this.palette[this.currentColorIndex]);
+        int colorId = this.palette[this.currentColorIndex];
+        this.exercise.drawShapeAtIndex(index, colorId);
+        int color = getResources().getColor(colorId);
         int borderColor = getResources().getColor(R.color.black);
         ShapeDrawable shape = this.exercise.shapeAtIndex(index, this.shapeDim, this.shapeDim, color, borderColor);
         imageView.setImageDrawable(shape);
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.checkBtn:
+                this.checkResult();
+                break;
+            case R.id.speakBtn:
+                this.vocalize();
+                break;
+            default:break;
+        }
+    }
+
+    private int vocalizeIndex = 0;
+    private void vocalize() {
+        String colorName = exercise.colorNameAtIndex(vocalizeIndex);
+        String shapeName = exercise.shapeNameAtIndex(vocalizeIndex);
+        Collocation collocation = new Collocation(colorName, shapeName);
+        Log.d("TAGGG", collocation.description());
+        CollocationVocalizer vocalizer = new CollocationVocalizer(collocation, this);
+        vocalizer.vocalize();
+
+        //Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", this.exercise.textAtIndex(this.vocalizeIndex), true);
+        //vocalizer.start();
+        this.vocalizeIndex++;
+        if (this.vocalizeIndex == this.exercise.shapes.length) {
+            this.vocalizeIndex = 0;
+        }
+    }
+
+    private void checkResult() {
+        ToastHelper.showToast(this, this.exercise.isRightColored());
+    }
 }

@@ -19,8 +19,6 @@ public class RelateExercise {
 
         this.formIndexes();
         this.mutate();
-
-
     }
 
     public void formIndexes() {
