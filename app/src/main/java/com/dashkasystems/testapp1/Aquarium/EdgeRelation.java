@@ -19,7 +19,7 @@ public class EdgeRelation extends Relation {
     @Override
     public String verbalDescription() {
         Collocation objectDescription = new Collocation(object.verbalDescription(), Accusative);
-        return objectDescription.description() + " в " + edgesDescription();
+        return super.verbalDescription() + " " + objectDescription.description() + " в " + edgesDescription();
     }
 
     private String edgesDescription () {

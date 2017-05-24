@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -23,7 +25,7 @@ import com.dashkasystems.testapp1.Aquarium.Inhabitant;
 import java.util.List;
 
 
-public class AquariumActivity extends AppCompatActivity implements View.OnDragListener, View.OnLongClickListener {
+public class AquariumActivity extends AppCompatActivity implements View.OnDragListener, View.OnLongClickListener, View.OnClickListener {
 
     RelativeLayout aquariumView;
     LinearLayout inhabitantsView;
@@ -40,6 +42,9 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
         aquariumView = (RelativeLayout) findViewById(R.id.aquarium_view);
 
         inhabitantsView = (LinearLayout) findViewById(R.id.inhabitants_view);
+
+        ImageButton vocalizeBtn = (ImageButton) findViewById(R.id.speakBtn);
+        vocalizeBtn.setOnClickListener(this);
 
         setupInhabitants();
         setupInhabitantsTargets();
@@ -163,6 +168,7 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
                     Log.e("IS NOT END", isNotEnd + "");
                     if (isNotEnd) {
                         Log.e("nextStep", "+");
+                        this.vocalize();
                         inhabitantsView.removeAllViewsInLayout();
                         this.setupInhabitants();
                         this.setupInhabitantsTargets();
@@ -200,6 +206,17 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
                 0          // flags (not currently used, set to 0)
         );
         return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.speakBtn) {
+            vocalize();
+        }
+    }
+
+    private void vocalize() {
+        this.exercise.vocalize();
     }
 
 

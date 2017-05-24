@@ -11,6 +11,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import ru.yandex.speechkit.Vocalizer;
+
 /**
  * Created by pandasystems on 5/1/17.
  */
@@ -58,11 +60,21 @@ public class AquariumExercise {
             List<Integer> indexes = populatedAquarium.occupiedPlacesByInhabitant(curInhabitant);
             Integer rootIndex = indexes.get(indexes.size()-1);
             currentAquarium.addInhabitant(curInhabitant, rootIndex);
-            currentAquarium.relationsForInhabitant(curInhabitant);
 
             generateInhabitCandidates();
         }
         return !isEnd;
+    }
+
+    public void vocalize() {
+        List<Relation> relations = currentAquarium.relationsForInhabitant(stepSequence.get(stepNumber));
+        int relationsCount = relations.size();
+        int index = RandomHelper.getInt(relationsCount);
+        Relation relation = relations.get(index);
+        String description = relation.verbalDescription();
+
+        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", description, true);
+        vocalizer.start();
     }
 
     private void generateInhabitCandidates() {

@@ -8,6 +8,8 @@ public class Relation {
     protected Inhabitant object;
 
 
-    public String verbalDescription() {return "";}
+    public String verbalDescription() {
+        return "Помести";
+    }
 
 }

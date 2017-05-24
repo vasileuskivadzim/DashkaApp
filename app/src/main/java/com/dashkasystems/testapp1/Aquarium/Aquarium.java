@@ -216,10 +216,6 @@ public class Aquarium {
             }
         }
 
-        for (Relation relation: relations) {
-            Log.e("RElation ", relation.verbalDescription());
-        }
-
         return relations;
     }
 

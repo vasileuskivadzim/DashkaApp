@@ -42,6 +42,6 @@ public class MultipleObjectsRelation extends Relation {
             }
         }
 
-        return builder.toString();
+        return super.verbalDescription() + " " + builder.toString();
     }
 }

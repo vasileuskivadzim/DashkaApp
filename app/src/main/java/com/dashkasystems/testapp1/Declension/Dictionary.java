@@ -242,6 +242,14 @@ public class Dictionary {
                 null);
         aMap.put("синий", blue);
 
+        PartOfSpeech lightBlue = new Adjective(new KindNumeralSpeechCase("голубой", "голубая", "голубое", "голубые"),
+                new KindNumeralSpeechCase("голубого", "голубой", "голубого", "голубых"),
+                null,
+                new KindNumeralSpeechCase("голубой", "голубую", "голубое", "голубые"),
+                new KindNumeralSpeechCase("голубым", "голубой", "голубым", "голубыми"),
+                null);
+        aMap.put("голубой", lightBlue);
+
         PartOfSpeech green = new Adjective(new KindNumeralSpeechCase("зелёный", "зелёная", "зелёное", "зелёные"),
                 new KindNumeralSpeechCase("зелёного", "зелёной", "зелёного", "зелёных"),
                 null,

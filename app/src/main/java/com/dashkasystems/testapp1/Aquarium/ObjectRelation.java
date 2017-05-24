@@ -43,7 +43,7 @@ public class ObjectRelation extends Relation {
         Collocation otherDescription = new Collocation(other.verbalDescription(), forceCase);
         builder.append(otherDescription.description());
 
-        return builder.toString();
+        return super.verbalDescription() + " " + builder.toString();
     }
 
     private String kindDescription() {
