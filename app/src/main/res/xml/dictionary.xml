@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dictionary>
+    <!--> Animals <-->
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Волк" sound="@raw/wolf"/>
+            <plural word="Волки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Волкa" sound=""/>
+            <plural word="Волков" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Заяц" sound="@raw/rabbit"/>
+            <plural word="Зайцы" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Зайца" sound=""/>
+            <plural word="Зайцев" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Кот" sound="@raw/cat"/>
+            <plural word="Коты" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Кота" sound=""/>
+            <plural word="Котов" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Курица" sound="@raw/hen"/>
+            <plural word="Курицы" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Курицы" sound=""/>
+            <plural word="Куриц" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Лев" sound="@raw/lion"/>
+            <plural word="Львы" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Льва" sound=""/>
+            <plural word="Львов" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Лиса" sound="@raw/fox"/>
+            <plural word="Лисы" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Лисы" sound=""/>
+            <plural word="Лис" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Лошадь" sound="@raw/horse"/>
+            <plural word="Лошади" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Лошади" sound=""/>
+            <plural word="Лошадей" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Медведь" sound="@raw/bear"/>
+            <plural word="Медведи" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Медведя" sound=""/>
+            <plural word="Медведей" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Мышь" sound="@raw/mouse"/>
+            <plural word="Мыши" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Мыши" sound=""/>
+            <plural word="Мышей" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Олень" sound="@raw/deer"/>
+            <plural word="Олени" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Оленя" sound=""/>
+            <plural word="Оленей" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Петух" sound="@raw/rooster"/>
+            <plural word="Петухи" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Петуха" sound=""/>
+            <plural word="Петухов" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Свинья" sound="@raw/pig"/>
+            <plural word="Свиньи" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Свиньи" sound=""/>
+            <plural word="Свиней" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Собака" sound="@raw/dog"/>
+            <plural word="Собаки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Собаки" sound=""/>
+            <plural word="Собак" sound=""/>
+        </genitive>
+    </noun>
+
+    <!--> Shapes <-->
+
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Звезда" sound="@raw/star"/>
+            <plural word="Звёзды" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Звезды" sound=""/>
+            <plural word="Звёзд" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Квадрат" sound="@raw/square"/>
+            <plural word="Квадраты" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Квадрата" sound=""/>
+            <plural word="Квадратов" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Круг" sound="@raw/circle"/>
+            <plural word="Круги" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Круга" sound=""/>
+            <plural word="Кругов" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Прямоугольник" sound="@raw/rectangle"/>
+            <plural word="Прямоугольники" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Прямоугольника" sound=""/>
+            <plural word="Прямоугольников" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Треугольник" sound="@raw/triangle"/>
+            <plural word="Треугольники" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Треугольника" sound=""/>
+            <plural word="Треугольников" sound=""/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Шестиугольник" sound="@raw/hexagon"/>
+            <plural word="Шестиугольники" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Шестиугольники" sound=""/>
+            <plural word="Шестиугольники" sound=""/>
+        </genitive>
+    </noun>
+
+    <!--> Things <-->
+
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Книга" sound=""/>
+            <plural word="Книги" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Книги" sound="@raw/bookgs"/>
+            <plural word="Книг" sound="@raw/bookgp"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Кукла" sound="@raw/doll"/>
+            <plural word="Куклы" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Куклы" sound="@raw/dollps"/>
+            <plural word="Кукол" sound="@raw/dollgp"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Лошадка" sound="@raw/horsetoy"/>
+            <plural word="Лошадки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Лошадки" sound="@raw/horsetoygs"/>
+            <plural word="Лошадок" sound="@raw/horsetoygp"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Мишка" sound="@raw/beartoy"/>
+            <plural word="Мишки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Мишки" sound="@raw/beartoygs"/>
+            <plural word="Мишек" sound="@raw/beartoygp"/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Мяч" sound="@raw/ball"/>
+            <plural word="Мячи" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Мячa" sound="@raw/ballgs"/>
+            <plural word="Мячей" sound="@raw/ballgp"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Пирамидка" sound="@raw/pyramid"/>
+            <plural word="Пирамидки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Пирамидки" sound="@raw/pyramidgs"/>
+            <plural word="Пирамидок" sound="@raw/pyramidgp"/>
+        </genitive>
+    </noun>
+    <noun kind="masculine">
+        <nominative>
+            <singular word="Самолёт" sound="@raw/flight"/>
+            <plural word="Самолёты" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Самолёта" sound=""/>
+            <plural word="Самолётов" sound="@raw/flightgp"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Черепашка" sound="@raw/turtle"/>
+            <plural word="Черепашки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Черепашки" sound=""/>
+            <plural word="Черепашек" sound="@raw/turtlegp"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Юла" sound="@raw/yule"/>
+            <plural word="Юлы" sound="@raw/yuleg"/>
+        </nominative>
+        <genitive>
+            <singular word="Юлы" sound="@raw/yuleg"/>
+            <plural word="Юлы" sound="@raw/yuleg"/>
+        </genitive>
+    </noun>
+    <noun kind="feminine">
+        <nominative>
+            <singular word="Машинка" sound="@raw/cartoy"/>
+            <plural word="Машинки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="Машинки" sound="@raw/cartoygs"/>
+            <plural word="Машинок" sound="@raw/cartoygp"/>
+        </genitive>
+    </noun>
+
+    <!--> Aqua <-->
+
+    <noun kind="feminine">
+        <nominative>
+            <singular word="рыбка" sound="@raw/wolf"/>
+            <plural word="рыбки" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="рыбки" sound=""/>
+            <plural word="рыбок" sound=""/>
+        </genitive>
+        <accusative>
+            <singular word="рыбку" sound="@raw/wolf"/>
+            <plural word="рыбок" sound=""/>
+        </accusative>
+        <ablative>
+            <singular word="рыбкой" sound="@raw/wolf"/>
+            <plural word="рыбками" sound=""/>
+        </ablative>
+    </noun>
+    <noun kind="neuter">
+        <nominative>
+            <singular word="растение" sound="@raw/wolf"/>
+            <plural word="растения" sound=""/>
+        </nominative>
+        <genitive>
+            <singular word="растения" sound=""/>
+            <plural word="растений" sound=""/>
+        </genitive>
+        <accusative>
+            <singular word="растение" sound="@raw/wolf"/>
+            <plural word="растения" sound=""/>
+        </accusative>
+        <ablative>
+            <singular word="растением" sound="@raw/wolf"/>
+            <plural word="растениями" sound=""/>
+        </ablative>
+    </noun>
+
+    <!--> Colors <-->
+
+    <Adiective>
+        <nominative>
+            <masculine word="красный" sound="@raw/red"/>
+            <feminine word="красная" sound="@raw/redf"/>
+            <neuter word="красное" sound=""/>
+            <plural word="красные" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="красного" sound=""/>
+            <feminine word="красной" sound=""/>
+            <neuter word="красного" sound=""/>
+            <plural word="красных" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="красный" sound=""/>
+            <feminine word="красную" sound=""/>
+            <neuter word="красное" sound=""/>
+            <plural word="красные" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="красным" sound=""/>
+            <feminine word="красной" sound=""/>
+            <neuter word="красным" sound=""/>
+            <plural word="красными" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="оранжевый" sound="@raw/orange"/>
+            <feminine word="оранжевая" sound="@raw/orangef"/>
+            <neuter word="оранжевое" sound=""/>
+            <plural word="оранжевые" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="оранжевого" sound=""/>
+            <feminine word="оранжевой" sound=""/>
+            <neuter word="оранжевого" sound=""/>
+            <plural word="оранжевых" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="оранжевый" sound=""/>
+            <feminine word="оранжевую" sound=""/>
+            <neuter word="оранжевое" sound=""/>
+            <plural word="оранжевые" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="оранжевым" sound=""/>
+            <feminine word="оранжевой" sound=""/>
+            <neuter word="оранжевым" sound=""/>
+            <plural word="оранжевыми" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="синий" sound="@raw/blue"/>
+            <feminine word="синяя" sound="@raw/bluef"/>
+            <neuter word="синее" sound=""/>
+            <plural word="синие" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="синего" sound=""/>
+            <feminine word="синей" sound=""/>
+            <neuter word="синего" sound=""/>
+            <plural word="синих" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="синий" sound=""/>
+            <feminine word="синюю" sound=""/>
+            <neuter word="синее" sound=""/>
+            <plural word="синие" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="синим" sound=""/>
+            <feminine word="синей" sound=""/>
+            <neuter word="синим" sound=""/>
+            <plural word="синими" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="голубой" sound=""/>
+            <feminine word="голубая" sound=""/>
+            <neuter word="голубое" sound=""/>
+            <plural word="голубые" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="голубого" sound=""/>
+            <feminine word="голубой" sound=""/>
+            <neuter word="голубого" sound=""/>
+            <plural word="голубых" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="голубой" sound=""/>
+            <feminine word="голубую" sound=""/>
+            <neuter word="голубое" sound=""/>
+            <plural word="голубые" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="голубым" sound=""/>
+            <feminine word="растение" sound=""/>
+            <neuter word="голубой" sound=""/>
+            <plural word="голубыми" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="зелёный" sound="@raw/green"/>
+            <feminine word="зелёная" sound="@raw/greenf"/>
+            <neuter word="зелёное" sound=""/>
+            <plural word="зелёные" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="зелёного" sound=""/>
+            <feminine word="зелёной" sound=""/>
+            <neuter word="зелёного" sound=""/>
+            <plural word="зелёных" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="зелёный" sound=""/>
+            <feminine word="зелёную" sound=""/>
+            <neuter word="зелёное" sound="f"/>
+            <plural word="зелёные" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="зелёным" sound=""/>
+            <feminine word="зелёной" sound=""/>
+            <neuter word="зелёным" sound=""/>
+            <plural word="зелёными" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="белый" sound="@raw/white"/>
+            <feminine word="белая" sound="@raw/whitef"/>
+            <neuter word="белое" sound=""/>
+            <plural word="белые" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="белого" sound=""/>
+            <feminine word="белой" sound=""/>
+            <neuter word="белого" sound=""/>
+            <plural word="белых" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="белый" sound=""/>
+            <feminine word="белую" sound=""/>
+            <neuter word="белое" sound=""/>
+            <plural word="белые" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="белым" sound=""/>
+            <feminine word="белой" sound=""/>
+            <neuter word="белым" sound=""/>
+            <plural word="белыми" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="жёлтый" sound="@raw/yellow"/>
+            <feminine word="жёлтая" sound="@raw/yellowf"/>
+            <neuter word="жёлтое" sound=""/>
+            <plural word="жёлтые" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="жёлтого" sound=""/>
+            <feminine word="жёлтой" sound=""/>
+            <neuter word="жёлтого" sound=""/>
+            <plural word="жёлтых" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="жёлтый" sound=""/>
+            <feminine word="жёлтую" sound=""/>
+            <neuter word="жёлтое" sound=""/>
+            <plural word="жёлтые" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="жёлтым" sound=""/>
+            <feminine word="жёлтой" sound=""/>
+            <neuter word="жёлтым" sound=""/>
+            <plural word="жёлтыми" sound=""/>
+        </ablative>
+    </Adiective>
+
+    <!--> Sizes <-->
+
+    <Adiective>
+        <nominative>
+            <masculine word="большой" sound=""/>
+            <feminine word="большая" sound=""/>
+            <neuter word="большое" sound=""/>
+            <plural word="большие" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="большого" sound=""/>
+            <feminine word="большой" sound=""/>
+            <neuter word="большого" sound=""/>
+            <plural word="больших" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="большой" sound=""/>
+            <feminine word="большую" sound=""/>
+            <neuter word="большое" sound=""/>
+            <plural word="большие" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="большим" sound=""/>
+            <feminine word="большой" sound=""/>
+            <neuter word="большим" sound=""/>
+            <plural word="большими" sound=""/>
+        </ablative>
+    </Adiective>
+    <Adiective>
+        <nominative>
+            <masculine word="маленький" sound=""/>
+            <feminine word="маленькая" sound=""/>
+            <neuter word="маленькое" sound=""/>
+            <plural word="маленькие" sound=""/>
+        </nominative>
+        <genitive>
+            <masculine word="маленького" sound=""/>
+            <feminine word="маленькой" sound=""/>
+            <neuter word="маленького" sound=""/>
+            <plural word="маленьких" sound=""/>
+        </genitive>
+        <accusative>
+            <masculine word="маленький" sound=""/>
+            <feminine word="маленькую" sound=""/>
+            <neuter word="маленькое" sound=""/>
+            <plural word="маленькие" sound=""/>
+        </accusative>
+        <ablative>
+            <masculine word="маленьким" sound=""/>
+            <feminine word="маленькой" sound=""/>
+            <neuter word="маленьким" sound=""/>
+            <plural word="маленькими" sound=""/>
+        </ablative>
+    </Adiective>
+
+    <!--> Sizes <-->
+
+    <Numeral number="1" numeral="singular" case="nominative">
+        <nominative>
+            <masculine word="Один" sound="@raw/one"/>
+            <feminine word="Одна" sound="@raw/onef"/>
+            <neuter word="Одно" sound=""/>
+        </nominative>
+    </Numeral>
+    <Numeral number="2" numeral="singular" case="genitive">
+        <nominative>
+            <masculine word="Два" sound="@raw/two"/>
+            <feminine word="Две" sound="@raw/twof"/>
+            <neuter word="Два" sound="@raw/two"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="3" numeral="singular" case="genitive">
+        <nominative>
+            <masculine word="Три" sound="@raw/three"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="4" numeral="singular" case="genitive">
+        <nominative>
+            <masculine word="Четыре" sound="@raw/four"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="5" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Пять" sound="@raw/five"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="6" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Шесть" sound="@raw/six"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="7" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Семь" sound="@raw/seven"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="8" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Восемь" sound="@raw/eight"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="9" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Девять" sound="@raw/nine"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="10" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Десять" sound="@raw/ten"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="11" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Одиннадцать" sound="@raw/eleven"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="12" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Двенадцать" sound="@raw/twelve"/>
+        </nominative>
+    </Numeral>
+    <Numeral number="13" numeral="plural" case="genitive">
+        <nominative>
+            <masculine word="Тринадцать" sound="@raw/thirteen"/>
+        </nominative>
+    </Numeral>
+</Dictionary>
