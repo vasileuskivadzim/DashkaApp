@@ -13,11 +13,10 @@ import com.dashkasystems.testapp1.Aquarium.Aquarium;
 
 public class ChooseExerciseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    protected String[] exercises = {"Текст из предложений", "Выбери картинку", "Предложение из слов 1",
-            "Число - Картинка", "Раскрась фигуры", "Конструктивная картина",
-            "Предложение из слов 2", "Бытовые звуки", "Звуки природы",
-            "Музыкальные интсрументы", "Аквариум", "Упражнение 3",
-            "Упражнение 1", "Упражнение 2", "Упражнение 3"};
+    protected String[] exercises = {"Составь текст из предложений", "Выбери картинку", "Собери предложение из слов",
+            "Соотнеси число с картинкой", "Раскрась фигуры", "Собери картину",
+            "Составь предложение из слов", "Бытовые звуки", "Звуки природы",
+            "Музыкальные интсрументы", "Засели аквариум", "Выбери слово"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +79,10 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
             this.startActivity(intent);
         } else if (position == 10) {
             Intent intent = new Intent(this, AquariumActivity.class);
+            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+            this.startActivity(intent);
+        } else if (position == 11) {
+            Intent intent = new Intent(this, ChooseDroppedWordActivity.class);
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);
         }

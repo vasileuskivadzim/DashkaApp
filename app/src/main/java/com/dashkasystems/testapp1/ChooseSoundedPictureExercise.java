@@ -1,6 +1,7 @@
 package com.dashkasystems.testapp1;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 
 import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
 
@@ -51,6 +52,11 @@ public class ChooseSoundedPictureExercise implements ChooseImageExercise {
 
     public void vocalizeAtIndex(int index, Context context){
         int soundRes = pictures[index].sound;
-        Vocalizer.playSound(soundRes, context, null);
+        Vocalizer.playSound(soundRes, context, new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+        });
     }
 }

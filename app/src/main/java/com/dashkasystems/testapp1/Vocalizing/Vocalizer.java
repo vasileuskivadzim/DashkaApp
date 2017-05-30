@@ -119,6 +119,7 @@ public class Vocalizer {
         sentenceMap = Collections.unmodifiableMap(aMap);
     }
 
+
     public static void vocalizeSentence(String sentence, Context context, MediaPlayer.OnCompletionListener completionListener) {
         int res = getSoundResForSentence(sentence);
         if (res != -1) {
