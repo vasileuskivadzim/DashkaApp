@@ -1,5 +1,6 @@
 package com.dashkasystems.testapp1;
 
+import android.media.MediaPlayer;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -84,7 +85,12 @@ public class ReorderWordsExerciseActivity extends AppCompatActivity implements V
 
     private void vocalize() {
         if (!exerciseSequence.isCompleted()) {
-            Vocalizer.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, null);
+            Vocalizer.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, new MediaPlayer.OnCompletionListener() {
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    mp.release();
+                }
+            });
         }
     }
 

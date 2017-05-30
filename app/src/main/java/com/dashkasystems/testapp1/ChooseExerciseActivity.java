@@ -16,8 +16,7 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
     protected String[] exercises = {"Составь текст из предложений", "Выбери картинку", "Собери предложение из слов",
             "Соотнеси число с картинкой", "Раскрась фигуры", "Собери картину",
             "Составь предложение из слов", "Бытовые звуки", "Звуки природы",
-            "Музыкальные интсрументы", "Засели аквариум", "Выбери слово",
-            "Упражнение 1", "Упражнение 2", "Упражнение 3"};
+            "Музыкальные интсрументы", "Засели аквариум", "Выбери слово"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +79,10 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
             this.startActivity(intent);
         } else if (position == 10) {
             Intent intent = new Intent(this, AquariumActivity.class);
+            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+            this.startActivity(intent);
+        } else if (position == 11) {
+            Intent intent = new Intent(this, ChooseDroppedWordActivity.class);
             intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
             this.startActivity(intent);
         }

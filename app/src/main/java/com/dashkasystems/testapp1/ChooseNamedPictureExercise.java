@@ -1,6 +1,7 @@
 package com.dashkasystems.testapp1;
 
 import android.content.Context;
+import android.media.MediaPlayer;
 
 import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
 
@@ -47,7 +48,12 @@ public class ChooseNamedPictureExercise implements ChooseImageExercise {
 
     public void vocalizeAtIndex(int index, Context context){
         String name = namedPictures[index].name;
-        Vocalizer.vocalizeWord(name, context, null);
+        Vocalizer.vocalizeWord(name, context, new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mp.release();
+            }
+        });
     }
 
 

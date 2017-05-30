@@ -4,6 +4,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.RawRes;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -177,6 +178,13 @@ public class ExerciseFactory {
     }
 
 
+
+    public static ChooseDroppedWordExercise chooseDroppedWordExercise() {
+        String[] words = { /*"Книга",*/ "Кукла", "Лошадка", "Машинка", "Мишка",
+                "Мяч", "Пирамидка", "Самолёт", "Черепашка", "Юла", "Волк", "Заяц", "Кот", "Курица", "Лев",
+                "Лиса", "Лошадь", "Медведь", "Мышь", "Олень", "Петух", "Свинья", "Собака"};
+        return  new ChooseDroppedWordExercise(words);
+    }
 
 
 
