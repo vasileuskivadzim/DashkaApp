@@ -23,19 +23,12 @@
         android:layout_alignParentStart="true"
         app:srcCompat="@drawable/speak" />
 
-    <Button
-        android:text="Готово"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/checkBtn"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="Засели аквариум"
         android:id="@+id/titleTextView"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
@@ -58,7 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="30dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="8dp"
         android:id="@+id/inhabitants_view"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"></LinearLayout>

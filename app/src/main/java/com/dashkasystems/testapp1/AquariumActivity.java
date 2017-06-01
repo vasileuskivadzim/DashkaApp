@@ -1,7 +1,9 @@
 package com.dashkasystems.testapp1;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
@@ -95,9 +97,11 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
                 shapeDim);
         layoutParams.setMargins(10, 10, 10, 0);
         for (int i = 0; i < itemsCount; i++) {
+            Inhabitant inhabitant = candidates[i];
 
             ImageView imageView = new ImageView(this);
-            Drawable drawable = this.getResources().getDrawable(R.drawable.ball);
+            Drawable drawable = inhabitant.getInhabitantDrawable(this);
+
             imageView.setImageDrawable(drawable);
             imageView.setTag(i);
             imageView.setLayoutParams(layoutParams);
@@ -105,7 +109,7 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
 
             inhabitantsView.addView(imageView);
         }
-        inhabitantsView.setBackgroundColor(getResources().getColor(R.color.lightOrange));
+        inhabitantsView.setBackgroundColor(getColor(R.color.lightOrange));
     }
 
     protected int colForIndex(int index) {
@@ -157,21 +161,20 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
             case DragEvent.ACTION_DROP:
                 ClipData.Item item = event.getClipData().getItemAt(0);
                 String index = item.getText().toString();
-                Log.e("INDEX", index);
-                Log.e("TAG",  v.getTag().toString());
                 if ( index.equals(v.getTag().toString()) ) {
-                    Log.e("Inside rigth", exercise.getRightInhabitCandidateIndex() + "");
+                    Inhabitant inhabitant = exercise.getInhabitCandidates()[exercise.getRightInhabitCandidateIndex()];
                     v.setTag(IMAGE_ALREADY_INSERTED_TAG);
-                    imageView.setImageDrawable(getDrawable(R.drawable.bear));
+                    imageView.setImageDrawable(inhabitant.getInhabitantDrawable(this));
 
                     boolean isNotEnd = exercise.nextStep();
-                    Log.e("IS NOT END", isNotEnd + "");
                     if (isNotEnd) {
-                        Log.e("nextStep", "+");
                         this.vocalize();
                         inhabitantsView.removeAllViewsInLayout();
                         this.setupInhabitants();
                         this.setupInhabitantsTargets();
+                    }
+                    else {
+                        gameOver();
                     }
                 }
                 v.invalidate();
@@ -217,6 +220,24 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
 
     private void vocalize() {
         this.exercise.vocalize();
+    }
+
+    private void gameOver() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        alertDialogBuilder.setTitle("Победа");
+        alertDialogBuilder
+                .setMessage("Ты заселил аквариум правильно. Попробуй сыграть ещё раз позже!")
+                .setCancelable(false)
+                .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        AquariumActivity.this.finish();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 

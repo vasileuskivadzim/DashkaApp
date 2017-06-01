@@ -86,7 +86,13 @@ public class AquariumExercise {
         List<Color> colors = new ArrayList<>(Arrays.asList(Color.all()));
         if (rightInhabitant.getClass() == Fish.class) {
             Fish fish = (Fish) rightInhabitant;
-            colors.remove(fish.color);
+            int index = 0;
+            for (int i=0; i<colors.size(); i++) {
+                if (colors.get(i).color == fish.color.color) {
+                    index = i;
+                }
+            }
+            colors.remove(index);
         }
 
         for (int i = 0; i < candidatesCount; i++) {
