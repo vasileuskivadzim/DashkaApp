@@ -109,7 +109,7 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
 
             inhabitantsView.addView(imageView);
         }
-        inhabitantsView.setBackgroundColor(getColor(R.color.lightOrange));
+        inhabitantsView.setBackgroundColor(getResources().getColor(R.color.lightOrange));
     }
 
     protected int colForIndex(int index) {
@@ -202,7 +202,6 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
         View.DragShadowBuilder myShadow = new AquariumActivity.MyDragShadowBuilder(v);
 
         // Starts the drag
-
         v.startDrag(dragData,  // the data to be dragged
                 myShadow,  // the drag shadow builder
                 null,      // no need to use local data
@@ -248,7 +247,7 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
         public MyDragShadowBuilder(View v) {
             super(v);
             ImageView imV = (ImageView) v;
-            Drawable dr = imV.getDrawable();
+            Drawable dr = imV.getDrawable().mutate().getConstantState().newDrawable();
             shadow = dr;
         }
 

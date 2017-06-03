@@ -308,7 +308,7 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
             super(v);
 
             ImageView imV = (ImageView) v;
-            Drawable dr = imV.getDrawable();
+            Drawable dr = imV.getDrawable().mutate().getConstantState().newDrawable();
             shadow = dr;
         }
 

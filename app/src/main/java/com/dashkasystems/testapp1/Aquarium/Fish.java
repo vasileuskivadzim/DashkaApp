@@ -27,7 +27,7 @@ public class Fish extends Inhabitant {
     @Override
     public Drawable getInhabitantDrawable(Context context) {
         Drawable fish = context.getDrawable(R.drawable.gray_aqua_fish).mutate();
-        int color = context.getColor(this.color.color);
+        int color = context.getResources().getColor(this.color.color);
         fish.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
         return fish;
     }
