@@ -49,6 +49,10 @@ public class RelateImageNumberExercise {
         this.pictures = pictures;
         this.dimension = dimension;
 
+        this.rightNumberIndex = RandomHelper.getInt(dimension);
+        this.rightPictureIndex = RandomHelper.getInt(dimension);
+
+
         this.formIndexes();
         this.mutate();
     }
@@ -66,10 +70,11 @@ public class RelateImageNumberExercise {
     }
 
     public void mutate() {
+        this.rightNumberIndex = (this.rightPictureIndex + RandomHelper.getInt(dimension)) % dimension;
+        this.rightPictureIndex = (this.rightNumberIndex + RandomHelper.getInt(dimension)) % dimension;
         RandomHelper.shuffleIndexArray(this.shuffledNumbersIndexes);
         RandomHelper.shuffleIndexArray(this.shuffledPicturesIndexes);
-        this.rightNumberIndex = RandomHelper.getInt(dimension);
-        this.rightPictureIndex = RandomHelper.getInt(dimension);
+
     }
 
 }
