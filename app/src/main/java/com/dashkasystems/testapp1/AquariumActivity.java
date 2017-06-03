@@ -247,7 +247,7 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
         public MyDragShadowBuilder(View v) {
             super(v);
             ImageView imV = (ImageView) v;
-            Drawable dr = imV.getDrawable();
+            Drawable dr = imV.getDrawable().mutate().getConstantState().newDrawable();
             shadow = dr;
         }
 
