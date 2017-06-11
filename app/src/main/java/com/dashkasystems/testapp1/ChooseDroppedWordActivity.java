@@ -22,8 +22,8 @@ import org.w3c.dom.Text;
 public class ChooseDroppedWordActivity extends AppCompatActivity implements View.OnClickListener {
     public enum DroppingState {DROPPING, CANCEL_DROPPING, CLEARING, READY}
 
-    int droppingItemsHeight = 350;
-    int droppingItemMargin = 200;
+    int droppingItemsHeight = (int) (115 * ScreenHelper.getDensity());
+    int droppingItemMargin = (int) (70 * ScreenHelper.getDensity());
 
     ChooseDroppedWordExercise exercise = ExerciseFactory.chooseDroppedWordExercise();
 
@@ -123,12 +123,13 @@ public class ChooseDroppedWordActivity extends AppCompatActivity implements View
         state = DroppingState.CANCEL_DROPPING;
         positionAnimator.cancel();
         state = DroppingState.CLEARING;
-        positionAnimator = positionAnimator(droppingItems.getTranslationY(), 200);
+        positionAnimator = positionAnimator(droppingItems.getTranslationY(), (long) (70 * ScreenHelper.getDensity()));
         positionAnimator.start();
     }
 
     private ValueAnimator positionAnimator(final float start, long duration) {
         ValueAnimator positionAnimator = ValueAnimator.ofFloat(start, dropArea.getHeight() + droppingItemsHeight);
+
 
         positionAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override

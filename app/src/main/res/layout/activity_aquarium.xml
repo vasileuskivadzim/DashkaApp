@@ -41,7 +41,7 @@
         android:layout_marginTop="27dp"
         android:minHeight="30dp"
         android:id="@+id/aquarium_view"
-        android:layout_below="@+id/checkBtn"
+        android:layout_below="@+id/speakBtn"
         android:layout_alignParentEnd="true">
 
     </RelativeLayout>

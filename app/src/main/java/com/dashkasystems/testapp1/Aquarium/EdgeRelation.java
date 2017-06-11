@@ -19,40 +19,40 @@ public class EdgeRelation extends Relation {
     @Override
     public String verbalDescription() {
         Collocation objectDescription = new Collocation(object.verbalDescription(), Accusative);
-        return super.verbalDescription() + " " + objectDescription.description() + " в " + edgesDescription();
+        return super.verbalDescription() + " " + objectDescription.description() + edgesDescription();
     }
 
     private String edgesDescription () {
         if (edges.right) {
             if (edges.top) {
-                return "правый верхний угол";
+                return " в правый верхний угол";
             }
             else if (edges.bottom) {
-                return "правый нижний угол";
+                return " в правый нижний угол";
             }
             else {
-                return "центр левой грани";
+                return " справа по центру";
             }
         }
         else if (edges.left) {
             if (edges.top) {
-                return "левый верхний угол";
+                return " в левый верхний угол";
             }
             else if (edges.bottom) {
-                return "левый нижний угол";
+                return " в левый нижний угол";
             }
             else {
-                return "центр левой грани";
+                return " слева по центру";
             }
         }
         else if (edges.top) {
-            return "центр верхней грани";
+            return " сверху по центру";
         }
         else if (edges.bottom) {
-            return "центр нижней грани";
+            return " снизу по центру";
         }
         else {
-            return "центр";
+            return " в центр";
         }
 
 

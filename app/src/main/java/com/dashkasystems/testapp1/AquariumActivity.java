@@ -92,7 +92,7 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
         Inhabitant[] candidates = exercise.getInhabitCandidates();
 
         int itemsCount = candidates.length;
-        int shapeDim = (int) ((screenWidth / itemsCount) - 120);
+        int shapeDim = (int) ((screenWidth / itemsCount) - 27 * ScreenHelper.getDensity() );
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(shapeDim,
                 shapeDim);
         layoutParams.setMargins(10, 10, 10, 0);
@@ -129,12 +129,12 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
             case DragEvent.ACTION_DRAG_STARTED:
                 // Determines if this View can accept the dragged data
                 if (event.getClipDescription().hasMimeType(ClipDescription.MIMETYPE_TEXT_PLAIN)) {
-                    if (imageView.getDrawable() == null) {
-                        ShapeDrawable borderStarted = ShapeFactory.drawSquare(v.getWidth(), v.getHeight(), R.color.white, R.color.red);
-
-                        imageView.setImageDrawable(borderStarted);
-                        //imageView.setBackgroundColor(getResources().getColor(R.color.white));
-                    }
+//                    if (imageView.getDrawable() == null) {
+//                        ShapeDrawable borderStarted = ShapeFactory.drawSquare(v.getWidth(), v.getHeight(), R.color.white, R.color.red);
+//
+//                        imageView.setImageDrawable(borderStarted);
+//                        //imageView.setBackgroundColor(getResources().getColor(R.color.white));
+//                    }
 
                     v.invalidate();
 
