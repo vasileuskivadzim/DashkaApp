@@ -13,26 +13,10 @@ import com.dashkasystems.testapp1.Aquarium.Aquarium;
 
 public class ChooseExerciseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    protected String[] exercises = {"Составь текст из предложений", "Выбери картинку", "Собери предложение из слов",
-            "Соотнеси число с картинкой", "Раскрась фигуры", "Собери картину",
-            "Составь предложение из слов", "Бытовые звуки", "Звуки природы",
-            "Музыкальные интсрументы", "Засели аквариум", "Выбери слово"};
-
-    /*
-    Назови музыкальный инструмент
-Назови бытовые звуки
-Назови животное
-Назови звуки природы
-Соотнеси число с картинкой
-Раскрась фигуры
-Составь предложение из слов В1
-Составь предложение из слов В2
-Засели аквариум
-Выбери слово
-Составь текст из предложений
-Собери картинку по тексту
-на гласные после бытовых звуков (назові звук)
-     */
+    protected String[] exercises = {"Назови музыкальный инструмент", "Назови бытовые звуки", "Назови звук", "Назови животное",
+            "Назови звуки природы", "Соотнеси число с картинкой", "Раскрась фигуры",
+            "Составь предложение из слов В1", "Составь предложение из слов В2", "Засели аквариум",
+            "Выбери слово", "Составь текст из предложений", "Собери картинку по тексту"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,62 +34,56 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (position == 0) {
-            Intent intent = new Intent(this, ReorderTextExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 1) {
-            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 2) {
-            Intent intent = new Intent(this, ReorderWordsExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 3) {
-            Intent intent = new Intent(this, RelateTapableExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 4) {
-            Intent intent = new Intent(this, ShapeColoringExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 5) {
-            Intent intent = new Intent(this, CompileSceneExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 6) {
-            Intent intent = new Intent(this, ReorderWordsTapableExerciseActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 7) {
-            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
-            intent.putExtra("Sounds", "Domestic");
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 8) {
-            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
-            intent.putExtra("Sounds", "Nature");
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 9) {
-            Intent intent = new Intent(this, ChooseImageExerciseActivity.class);
-            intent.putExtra("Sounds", "Music");
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 10) {
-            Intent intent = new Intent(this, AquariumActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        } else if (position == 11) {
-            Intent intent = new Intent(this, ChooseDroppedWordActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
+        Intent intent = new Intent();
+
+        switch (position) {
+            case 0:
+                intent = new Intent(this, ChooseImageExerciseActivity.class);
+                intent.putExtra("Sounds", "Music");
+                break;
+            case 1:
+                intent = new Intent(this, ChooseImageExerciseActivity.class);
+                intent.putExtra("Sounds", "Domestic");
+                break;
+            case 2:
+                intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
+                break;
+            case 3:
+                intent = new Intent(this, ChooseImageExerciseActivity.class);
+                break;
+            case 4:
+                intent = new Intent(this, ChooseImageExerciseActivity.class);
+                intent.putExtra("Sounds", "Nature");
+                break;
+            case 5:
+                intent = new Intent(this, RelateTapableExerciseActivity.class);
+                break;
+            case 6:
+                intent = new Intent(this, ShapeColoringExerciseActivity.class);
+                break;
+            case 7:
+                intent = new Intent(this, ReorderWordsExerciseActivity.class);
+                break;
+            case 8:
+                intent = new Intent(this, ReorderWordsTapableExerciseActivity.class);
+                break;
+            case 9:
+                intent = new Intent(this, AquariumActivity.class);
+                break;
+            case 10:
+                intent = new Intent(this, ChooseDroppedWordActivity.class);
+                break;
+            case 11:
+                intent = new Intent(this, ReorderTextExerciseActivity.class);
+                break;
+            case 12:
+                intent = new Intent(this, CompileSceneExerciseActivity.class);
+                break;
+            default:
+                intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
+                break;
         }
-        else {
-            Intent intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
-            intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
-            this.startActivity(intent);
-        }
+        intent.putExtra("CHOSEN_EXERCISE_INTENT_KEY", exercises[position]);
+        this.startActivity(intent);
     }
 }
