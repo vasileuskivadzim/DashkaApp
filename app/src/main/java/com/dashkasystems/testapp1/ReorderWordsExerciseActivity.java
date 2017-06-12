@@ -48,6 +48,12 @@ public class ReorderWordsExerciseActivity extends AppCompatActivity implements V
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Vocalizer.shared.stop();
+    }
+
     protected void setupViews() {
         ReorderWordsExercise exercise = exerciseSequence.getCurrent();
         gridListView.setLayoutManager(new GridLayoutManager(this, 3));
@@ -85,12 +91,7 @@ public class ReorderWordsExerciseActivity extends AppCompatActivity implements V
 
     private void vocalize() {
         if (!exerciseSequence.isCompleted()) {
-            Vocalizer.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mp.release();
-                }
-            });
+            Vocalizer.shared.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, null);
         }
     }
 

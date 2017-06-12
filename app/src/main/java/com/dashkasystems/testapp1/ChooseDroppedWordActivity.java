@@ -17,6 +17,8 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
+
 import org.w3c.dom.Text;
 
 public class ChooseDroppedWordActivity extends AppCompatActivity implements View.OnClickListener {
@@ -65,6 +67,7 @@ public class ChooseDroppedWordActivity extends AppCompatActivity implements View
         if (positionAnimator != null) {
             positionAnimator.end();
         }
+        Vocalizer.shared.stop();
     }
 
     @Override

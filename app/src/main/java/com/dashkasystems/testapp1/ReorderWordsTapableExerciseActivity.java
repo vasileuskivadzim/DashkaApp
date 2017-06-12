@@ -52,6 +52,12 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
         configureTapableWords();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Vocalizer.shared.stop();
+    }
+
     public void setupExercise(ReorderWordsExerciseSequence exercise){
         this.nextWordIndex = 0;
         this.exerciseSequence = exercise;
@@ -132,12 +138,7 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
 
     private void vocalize() {
         if (!exerciseSequence.isCompleted()) {
-            Vocalizer.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mp.release();
-                }
-            });
+            Vocalizer.shared.vocalizeSentence(exerciseSequence.getCurrent().getSentence(), this, null);
         }
     }
 

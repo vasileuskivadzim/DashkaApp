@@ -30,13 +30,12 @@ public class CollocationVocalizer {
     }
 
     private void vocalizeNextWord() {
-        Vocalizer.vocalizeWord(collocation.words[vocalizeIndex], context, completionListener);
+        Vocalizer.shared.vocalizeWord(collocation.words[vocalizeIndex], context, completionListener);
     }
 
     MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
         @Override
         public void onCompletion(MediaPlayer mp) {
-            mp.release();
             vocalizeIndex++;
             if (vocalizeIndex < collocation.words.length) {
                 vocalizeNextWord();

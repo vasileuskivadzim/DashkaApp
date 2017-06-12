@@ -54,6 +54,11 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
         this.setupImageViews();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Vocalizer.shared.stop();
+    }
 
     private void setupImageViews(){
         TableLayout table = (TableLayout) findViewById(R.id.choose_image_exersise_layout);

@@ -4,6 +4,7 @@ package com.dashkasystems.testapp1.Vocalizing;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.support.annotation.RawRes;
+import android.util.Log;
 
 import com.dashkasystems.testapp1.Declension.Collocation;
 import com.dashkasystems.testapp1.R;
@@ -18,6 +19,10 @@ import java.util.Queue;
  */
 
 public class Vocalizer {
+    public static final Vocalizer shared = new Vocalizer();
+    MediaPlayer mPlayer;
+
+
     private static final Map<String, Integer> wordMap;
     static {
         Map<String, Integer> aMap = new HashMap<>();
@@ -120,7 +125,7 @@ public class Vocalizer {
     }
 
 
-    public static void vocalizeSentence(String sentence, Context context, MediaPlayer.OnCompletionListener completionListener) {
+    public void vocalizeSentence(String sentence, Context context, MediaPlayer.OnCompletionListener completionListener) {
         int res = getSoundResForSentence(sentence);
         if (res != -1) {
             playSound(res, context, completionListener);
@@ -128,20 +133,33 @@ public class Vocalizer {
     }
 
 
-    public static void vocalizeWord(String word, Context context, MediaPlayer.OnCompletionListener completionListener) {
+    public void vocalizeWord(String word, Context context, MediaPlayer.OnCompletionListener completionListener) {
         int res = getSoundResForWord(word);
         if (res != -1) {
             playSound(res, context, completionListener);
         }
     }
 
-    public static void playSound(@RawRes int soundRes, Context context, MediaPlayer.OnCompletionListener completionListener) {
-        MediaPlayer mPlayer = MediaPlayer.create(context, soundRes);
+    public void stop() {
+        try {
+            if (mPlayer != null) {
+                mPlayer.stop();
+                mPlayer.release();
+            }
+        } catch(Exception e){
+            Log.d("CATCH", "error ");
+        }
+    }
+
+    public void playSound(@RawRes int soundRes, Context context, MediaPlayer.OnCompletionListener completionListener) {
+        stop();
+
+        mPlayer = MediaPlayer.create(context, soundRes);
         mPlayer.setOnCompletionListener(completionListener);
         mPlayer.start();
     }
 
-    private static @RawRes int getSoundResForWord(String word) {
+    private @RawRes int getSoundResForWord(String word) {
         Integer res = wordMap.get(word);
         if (res != null) {
             return res;
@@ -149,7 +167,7 @@ public class Vocalizer {
         return -1;
     }
 
-    private static @RawRes int getSoundResForSentence(String sentence) {
+    private @RawRes int getSoundResForSentence(String sentence) {
         Integer res = sentenceMap.get(sentence);
         if (res != null) {
             return res;

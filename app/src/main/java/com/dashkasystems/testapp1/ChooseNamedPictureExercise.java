@@ -48,12 +48,7 @@ public class ChooseNamedPictureExercise implements ChooseImageExercise {
 
     public void vocalizeAtIndex(int index, Context context){
         String name = namedPictures[index].name;
-        Vocalizer.vocalizeWord(name, context, new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.release();
-            }
-        });
+        Vocalizer.shared.vocalizeWord(name, context, null);
     }
 
 

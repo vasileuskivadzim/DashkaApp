@@ -15,11 +15,9 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dashkasystems.testapp1.Declension.Collocation;
-import com.dashkasystems.testapp1.Vocalizing.CollocationVocalizer;
+import com.dashkasystems.testapp1.Vocalizing.*;
 
 import org.w3c.dom.Text;
-
-import ru.yandex.speechkit.Vocalizer;
 
 public class RelateTapableExerciseActivity extends AppCompatActivity implements View.OnClickListener, View.OnTouchListener {
     protected TextView captionTextView;
@@ -56,6 +54,12 @@ public class RelateTapableExerciseActivity extends AppCompatActivity implements 
         vocalizeBtn.setOnClickListener(this);
 
         this.setupColumns();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Vocalizer.shared.stop();
     }
 
     private void setupColumns(){

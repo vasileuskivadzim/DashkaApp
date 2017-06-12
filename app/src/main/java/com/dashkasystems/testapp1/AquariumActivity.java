@@ -23,6 +23,7 @@ import android.widget.TableLayout;
 
 import com.dashkasystems.testapp1.Aquarium.AquariumExercise;
 import com.dashkasystems.testapp1.Aquarium.Inhabitant;
+import com.dashkasystems.testapp1.Vocalizing.Vocalizer;
 
 import java.util.List;
 
@@ -50,6 +51,12 @@ public class AquariumActivity extends AppCompatActivity implements View.OnDragLi
 
         setupInhabitants();
         setupInhabitantsTargets();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.exercise.stopVocalizing();
     }
 
 

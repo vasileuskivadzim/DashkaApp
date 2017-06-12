@@ -15,9 +15,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.dashkasystems.testapp1.Declension.Collocation;
-import com.dashkasystems.testapp1.Vocalizing.CollocationVocalizer;
+import com.dashkasystems.testapp1.Vocalizing.*;
 
-import ru.yandex.speechkit.Vocalizer;
 
 public class ShapeColoringExerciseActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener {
 
@@ -51,6 +50,11 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
         checkBtn.setOnClickListener(this);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Vocalizer.shared.stop();
+    }
 
     private void configureShapeTable() {
         TableLayout shapeTable = (TableLayout) this.findViewById(R.id.shapeLayout);
@@ -188,8 +192,6 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
         CollocationVocalizer vocalizer = new CollocationVocalizer(collocation, this);
         vocalizer.vocalize();
 
-        //Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", this.exercise.textAtIndex(this.vocalizeIndex), true);
-        //vocalizer.start();
         this.vocalizeIndex++;
         if (this.vocalizeIndex == this.exercise.shapes.length) {
             this.vocalizeIndex = 0;

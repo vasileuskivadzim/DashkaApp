@@ -66,6 +66,7 @@ public class AquariumExercise {
         return !isEnd;
     }
 
+    Vocalizer vocalizer;
     public void vocalize() {
         List<Relation> relations = currentAquarium.relationsForInhabitant(stepSequence.get(stepNumber));
         int relationsCount = relations.size();
@@ -73,8 +74,12 @@ public class AquariumExercise {
         Relation relation = relations.get(index);
         String description = relation.verbalDescription();
 
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", description, true);
+        vocalizer = Vocalizer.createVocalizer("ru-RU", description, true);
         vocalizer.start();
+    }
+
+    public void stopVocalizing() {
+        vocalizer.cancel();
     }
 
     private void generateInhabitCandidates() {

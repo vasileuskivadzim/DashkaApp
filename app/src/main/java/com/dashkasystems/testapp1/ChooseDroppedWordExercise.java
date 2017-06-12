@@ -44,12 +44,7 @@ public class ChooseDroppedWordExercise {
 
 
     void vocalize(Context context) {
-        Vocalizer.vocalizeWord(currentStep[rightIndex], context, new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mp) {
-                mp.release();
-            }
-        });
+        Vocalizer.shared.vocalizeWord(currentStep[rightIndex], context, null);
     }
 
     private void generateStep() {

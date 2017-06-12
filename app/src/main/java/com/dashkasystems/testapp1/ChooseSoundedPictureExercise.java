@@ -52,7 +52,7 @@ public class ChooseSoundedPictureExercise implements ChooseImageExercise {
 
     public void vocalizeAtIndex(int index, Context context){
         int soundRes = pictures[index].sound;
-        Vocalizer.playSound(soundRes, context, new MediaPlayer.OnCompletionListener() {
+        Vocalizer.shared.playSound(soundRes, context, new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mp) {
                 mp.release();

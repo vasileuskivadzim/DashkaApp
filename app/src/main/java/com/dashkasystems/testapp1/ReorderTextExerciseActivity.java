@@ -52,6 +52,12 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
         checkBtn.setOnClickListener(this);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        vocalizer.cancel();
+    }
+
     private void setupExercise() {
         this.exercise = ExerciseFactory.reorderTextExercise(0);
     }
@@ -70,8 +76,9 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
        }
     }
 
+    Vocalizer vocalizer;
     private void vocalize() {
-        Vocalizer vocalizer = Vocalizer.createVocalizer("ru-RU", exercise.getText(), true);
+        vocalizer = Vocalizer.createVocalizer("ru-RU", exercise.getText(), true);
         vocalizer.start();
     }
 
