@@ -59,6 +59,15 @@ public class ChooseDroppedWordActivity extends AppCompatActivity implements View
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        state = DroppingState.CANCEL_DROPPING;
+        if (positionAnimator != null) {
+            positionAnimator.end();
+        }
+    }
+
+    @Override
     public void onClick(View v) {
         if (v.getId() == R.id.startBtn) {
             if (state == DroppingState.READY) {

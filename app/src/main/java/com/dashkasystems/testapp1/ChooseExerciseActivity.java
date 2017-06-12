@@ -13,7 +13,7 @@ import com.dashkasystems.testapp1.Aquarium.Aquarium;
 
 public class ChooseExerciseActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
-    protected String[] exercises = {"Назови музыкальный инструмент", "Назови бытовые звуки", "Назови звук", "Назови животное",
+    protected String[] exercises = {"Назови музыкальный инструмент", "Назови бытовые звуки", /* "Назови звук", */ "Назови животное",
             "Назови звуки природы", "Соотнеси число с картинкой", "Раскрась фигуры",
             "Составь предложение из слов В1", "Составь предложение из слов В2", "Засели аквариум",
             "Выбери слово", "Составь текст из предложений", "Собери картинку по тексту"};
@@ -45,38 +45,38 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
                 intent = new Intent(this, ChooseImageExerciseActivity.class);
                 intent.putExtra("Sounds", "Domestic");
                 break;
-            case 2:
+            /*case 2:
                 intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
-                break;
-            case 3:
+                break;*/
+            case 2://3:
                 intent = new Intent(this, ChooseImageExerciseActivity.class);
                 break;
-            case 4:
+            case 3://4:
                 intent = new Intent(this, ChooseImageExerciseActivity.class);
                 intent.putExtra("Sounds", "Nature");
                 break;
-            case 5:
+            case 4://5:
                 intent = new Intent(this, RelateTapableExerciseActivity.class);
                 break;
-            case 6:
+            case 5://6:
                 intent = new Intent(this, ShapeColoringExerciseActivity.class);
                 break;
-            case 7:
+            case 6://7:
                 intent = new Intent(this, ReorderWordsExerciseActivity.class);
                 break;
-            case 8:
+            case 7://8:
                 intent = new Intent(this, ReorderWordsTapableExerciseActivity.class);
                 break;
-            case 9:
+            case 8://9:
                 intent = new Intent(this, AquariumActivity.class);
                 break;
-            case 10:
+            case 9://10:
                 intent = new Intent(this, ChooseDroppedWordActivity.class);
                 break;
-            case 11:
+            case 10://11:
                 intent = new Intent(this, ReorderTextExerciseActivity.class);
                 break;
-            case 12:
+            case 11://12:
                 intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
                 break;
             default:
