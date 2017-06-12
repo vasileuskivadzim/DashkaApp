@@ -77,7 +77,7 @@ public class ChooseExerciseActivity extends AppCompatActivity implements Adapter
                 intent = new Intent(this, ReorderTextExerciseActivity.class);
                 break;
             case 12:
-                intent = new Intent(this, CompileSceneExerciseActivity.class);
+                intent = new Intent(this, CompileSceneExercisePrepareActivity.class);
                 break;
             default:
                 intent = new Intent(this, CompileSceneExercisePrepareActivity.class);

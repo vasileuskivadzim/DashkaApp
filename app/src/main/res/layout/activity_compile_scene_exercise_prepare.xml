@@ -11,33 +11,33 @@
     tools:context="com.dashkasystems.testapp1.CompileSceneExercisePrepareActivity">
 
     <TextView
-        android:text="Аня и Дима пошли в лес за грибами. Они взяли с собой две корзинки. Аня положила в свою корзинку два гриба. Коля положил четыре. По пути дети увидели большой дуб. На ветке сидела рыжая маленькая белка и ела орехи. Выше сидел дятел и клювом делал дупло. Очень понравилось детям гулять в лесу!"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
-        android:id="@+id/textView3"
+        android:id="@+id/textView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:gravity="center_horizontal"
-        android:layout_below="@+id/textView4"
+        android:layout_below="@+id/title"
         android:layout_alignParentStart="true" />
 
     <Button
         android:text="Запомнил"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:layout_below="@+id/textView3"
+        android:id="@+id/checkBtn"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp" />
 
     <TextView
-        android:text="Прогулка в лес"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView4"
+        android:id="@+id/title"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_marginTop="20dp"
+        android:textStyle="normal|bold"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textStyle="normal|bold" />
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
