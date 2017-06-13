@@ -55,7 +55,9 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
     @Override
     protected void onPause() {
         super.onPause();
-        vocalizer.cancel();
+        if (vocalizer != null) {
+            vocalizer.cancel();
+        }
     }
 
     private void setupExercise() {

@@ -79,7 +79,9 @@ public class AquariumExercise {
     }
 
     public void stopVocalizing() {
-        vocalizer.cancel();
+        if (vocalizer != null) {
+            vocalizer.cancel();
+        }
     }
 
     private void generateInhabitCandidates() {
