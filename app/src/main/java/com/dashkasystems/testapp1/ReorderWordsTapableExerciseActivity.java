@@ -1,5 +1,7 @@
 package com.dashkasystems.testapp1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -176,19 +178,35 @@ public class ReorderWordsTapableExerciseActivity extends AppCompatActivity imple
                     wordsLayout.removeAllViewsInLayout();
                     exerciseSequence.next();
                     if (exerciseSequence.isCompleted()) {
-                        nextButton.setText("Выполнено");
+                        //nextButton.setText("Выполнено");
+                        gameOver();
+                    } else {
+                        nextButton.setVisibility(View.VISIBLE);
+                        ToastHelper.showToast(this, true);
                     }
-                    nextButton.setVisibility(View.VISIBLE);
-
-                    ToastHelper.showToast(this, true);
                 }
             } else {
                 v.setBackgroundColor(getResources().getColor(R.color.red));
                 ToastHelper.showToast(this, false);
             }
         }
+    }
 
+    private void gameOver() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
 
+        alertDialogBuilder.setTitle("Молодец!");
+        alertDialogBuilder
+                .setMessage("Ты правильно составил все предложения! Можешь попробовать ещё раз позже.")
+                .setCancelable(false)
+                .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        ReorderWordsTapableExerciseActivity.this.finish();
+                    }
+                });
 
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

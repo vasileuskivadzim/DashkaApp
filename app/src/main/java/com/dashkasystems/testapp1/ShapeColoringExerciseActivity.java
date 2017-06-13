@@ -1,5 +1,7 @@
 package com.dashkasystems.testapp1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ShapeDrawable;
 import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
@@ -199,6 +201,28 @@ public class ShapeColoringExerciseActivity extends AppCompatActivity implements 
     }
 
     private void checkResult() {
-        ToastHelper.showToast(this, this.exercise.isRightColored());
+        if (this.exercise.isRightColored()) {
+            gameOver();
+        } else {
+            ToastHelper.showToast(this, false);
+        }
+    }
+
+    private void gameOver() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        alertDialogBuilder.setTitle("Молодец!");
+        alertDialogBuilder
+                .setMessage("Ты правильно раскрасил все фигуры! Можешь попробовать ещё раз позже.")
+                .setCancelable(false)
+                .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        ShapeColoringExerciseActivity.this.finish();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

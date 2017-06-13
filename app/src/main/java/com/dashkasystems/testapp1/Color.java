@@ -49,4 +49,8 @@ public class Color {
     public static Color darkBlue() {
         return new Color(R.color.darkBlue, "синий");
     }
+
+    public static Color white() {
+        return new Color(R.color.white, "белый");
+    }
 }

@@ -1,7 +1,9 @@
 package com.dashkasystems.testapp1;
 
+import android.app.AlertDialog;
 import android.content.ClipData;
 import android.content.ClipDescription;
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.Point;
@@ -221,6 +223,8 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
                         itemSelectorLayout.removeAllViewsInLayout();
                         this.setupSelectableItems();
                         this.setupTargetViews();
+                    } else {
+                        gameOver();
                     }
                 }
                 return true;
@@ -276,5 +280,23 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
         public void onDrawShadow(Canvas canvas) {
             shadow.draw(canvas);
         }
+    }
+
+    private void gameOver() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        alertDialogBuilder.setTitle("Молодец!");
+        alertDialogBuilder
+                .setMessage("Ты правильно составил картину! Можешь попробовать ещё раз позже.")
+                .setCancelable(false)
+                .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        CompileSceneExerciseActivity.this.finish();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

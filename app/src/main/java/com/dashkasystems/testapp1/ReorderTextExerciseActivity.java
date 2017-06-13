@@ -1,5 +1,7 @@
 package com.dashkasystems.testapp1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -92,6 +94,26 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
             prevId = currentId;
         }
 
-        ToastHelper.showToast(this, true);
+        gameOver();
+        //ToastHelper.showToast(this, true);
+    }
+
+
+    private void gameOver() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        alertDialogBuilder.setTitle("Молодец!");
+        alertDialogBuilder
+                .setMessage("Ты правильно составил текст! Можешь попробовать ещё раз позже.")
+                .setCancelable(false)
+                .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        ReorderTextExerciseActivity.this.finish();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }

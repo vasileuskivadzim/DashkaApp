@@ -161,7 +161,7 @@ public class ExerciseFactory {
     private static String[] shapeNames = {"Круг", "Квадрат", "Треугольник", "Звезда", "Прямоугольник", "Шестиугольник"};
 
     private static Color[] colors = {Color.red(), Color.orange(), Color.yellow(),
-            Color.green(), Color.blue(), Color.darkBlue()};
+            Color.green(), Color.white(), Color.darkBlue()};
 
 
     public static ShapeColoringExercise shapeColoringExercise() {

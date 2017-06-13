@@ -1,5 +1,7 @@
 package com.dashkasystems.testapp1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -120,11 +122,14 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
                 exerciseStep++;
                 if (exerciseStep == 5) {
                     captionTextView.setText("Упражнение выполнено");
+                    gameOver();
                 } else {
                     this.exercise.newRightAnswer();
+                    ToastHelper.showToast(this, right);
                 }
+            } else {
+                ToastHelper.showToast(this, right);
             }
-            ToastHelper.showToast(this, right);
         } else {
             vocalizeAtIndex(imageIndex);
             if (!tappedItems.contains(imageIndex)) {
@@ -136,6 +141,24 @@ public class ChooseImageExerciseActivity extends AppCompatActivity implements Vi
         }
 
         return false;
+    }
+
+    private void gameOver() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                this);
+
+        alertDialogBuilder.setTitle("Молодец");
+        alertDialogBuilder
+                .setMessage("Ты успешно выполнил упражнение! Можешь попробовать ещё раз позже.")
+                .setCancelable(false)
+                .setPositiveButton("Хорошо", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        ChooseImageExerciseActivity.this.finish();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
 
