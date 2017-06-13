@@ -1,5 +1,6 @@
 package com.dashkasystems.testapp1;
 
+import android.content.Context;
 import android.graphics.Point;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.RawRes;
@@ -41,8 +42,12 @@ class CompileSceneExercise {
         return this.text;
     }
 
-    public void vocalize() {
+    public void vocalize(Context context) {
+        text.vocalize(context);
+    }
 
+    public void stopVocalizing() {
+        text.stopVocalizing();
     }
 
 
@@ -56,12 +61,14 @@ class CompileSceneExercise {
 
     static public CompileSceneExercise getExercise() {
         String title = "Прогулка в лес";
-        String textContent = "Аня и Дима пошли в лес за грибами. Они взяли с собой две корзинки." +
-                " Аня положила в свою корзинку два гриба. Коля положил четыре. " +
-                "По пути дети увидели большой дуб. На ветке сидела рыжая маленькая белка и ела орехи." + "" +
-                " Выше сидел дятел и клювом делал дупло. Очень понравилось детям гулять в лесу!";
-        @RawRes int textSound = R.raw.sasha_came_back;
-        Text text = new Text(title, textContent, textSound);
+        String textContent = "Аня и Дима пошли в лес за грибами. Они взяли с собой две корзинки. " +
+                "Аня положила в свою корзинку два гриба. Дима положил четыре. " +
+                "По пути дети увидели большой дуб. На ветке сидела рыжая маленькая белка. Она ела орехи. " +
+                "Выше сидел дятел и клювом делал дупло. Очень понравилось детям гулять в лесу!";
+        @RawRes int[] textSounds = {R.raw.compile_scene_ann_and_dima, R.raw.compile_scene_two_basckets,
+                R.raw.compile_scene_ann_put_mushrums, R.raw.compile_scene_dima_put_four, R.raw.compile_scene_saw_tree,
+                R.raw.compile_scene_squirel, R.raw.compile_scene_she_ate_nuts, R.raw.compile_scene_woodpecker, R.raw.compile_scene_they_enjoy };
+        Text text = new Text(title, textContent, textSounds);
 
 
 
