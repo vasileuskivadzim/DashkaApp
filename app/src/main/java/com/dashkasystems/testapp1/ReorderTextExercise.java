@@ -1,5 +1,7 @@
 package com.dashkasystems.testapp1;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -11,15 +13,14 @@ import java.util.regex.Pattern;
 public class ReorderTextExercise {
     public String[] sentences;
     public int[] shuffledIndexes;
-    private String initialText;
-    private String title;
 
-    public ReorderTextExercise(String text, String title){
-        this.initialText = text;
-        this.title = title;
+    private Text text;
+
+    public ReorderTextExercise(Text text){
+        this.text = text;
 
         Pattern regExp = Pattern.compile("[^.!?\\s][^.!?]*(?:[.!?](?!['\"]?\\s|$)[^.!?]*)*[.!?]?['\"]?(?=\\s|$)", Pattern.MULTILINE | Pattern.COMMENTS);
-        Matcher regExpMatcher = regExp.matcher(text);
+        Matcher regExpMatcher = regExp.matcher(text.getContent());
         ArrayList<String> sentList = new ArrayList<>();
         while (regExpMatcher.find()) {
             sentList.add(regExpMatcher.group());
@@ -31,9 +32,9 @@ public class ReorderTextExercise {
     }
 
     public String getText() {
-        return initialText;
+        return text.getContent();
     }
-    public String getTitle() { return title; }
+    public String getTitle() { return text.getTitle(); }
 
 
     private void formIndexes() {
@@ -46,5 +47,8 @@ public class ReorderTextExercise {
     public void mutate() {
         RandomHelper.shuffleIndexArray(this.shuffledIndexes);
     }
+
+    public void vocalize(Context context) {text.vocalize(context);}
+    public void stopVocalizing() {text.stopVocalizing();}
 
 }

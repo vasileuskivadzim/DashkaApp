@@ -13,7 +13,6 @@ import com.woxthebox.draglistview.DragListView;
 
 import java.util.ArrayList;
 
-import ru.yandex.speechkit.Vocalizer;
 
 public class ReorderTextExerciseActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -55,9 +54,7 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
     @Override
     protected void onPause() {
         super.onPause();
-        if (vocalizer != null) {
-            vocalizer.cancel();
-        }
+        exercise.stopVocalizing();
     }
 
     private void setupExercise() {
@@ -78,10 +75,8 @@ public class ReorderTextExerciseActivity extends AppCompatActivity implements Vi
        }
     }
 
-    Vocalizer vocalizer;
     private void vocalize() {
-        vocalizer = Vocalizer.createVocalizer("ru-RU", exercise.getText(), true);
-        vocalizer.start();
+        exercise.vocalize(this);
     }
 
     private void checkResult() {

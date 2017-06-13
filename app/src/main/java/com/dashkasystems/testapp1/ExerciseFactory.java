@@ -24,7 +24,16 @@ public class ExerciseFactory {
     private static String[] textsToReorderTitles = {"Дядя Семён и Жучка"};
 
     public static ReorderTextExercise reorderTextExercise(int index) {
-       return new ReorderTextExercise(textsToReorder[index], textsToReorderTitles[index]);
+       //return new ReorderTextExercise(textsToReorder[index], textsToReorderTitles[index]);
+
+        String title = "Cаша и дождь";
+        String content = "Саша пошёл гулять на улицу. Начался дождь. " +
+                "У мальчика не было зонта. Он промок. Саша вернулся домой мокрым.";
+        @RawRes int[] resSequence = {R.raw.sasha_go_out, R.raw.sasha_rain_started,
+                R.raw.sasha_havent_umberella, R.raw.sasha_wet, R.raw.sasha_came_back};
+
+        Text sashaAndRain = new Text(title, content, resSequence);
+        return new ReorderTextExercise(sashaAndRain);
     }
 
 
