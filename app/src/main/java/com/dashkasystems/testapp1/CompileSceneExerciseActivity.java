@@ -25,6 +25,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TableRow;
 
+class Tag {
+    public String name;
+    public int index;
+
+    public Tag(String name, int index) {
+        this.name = name;
+        this.index = index;
+    }
+
+}
+
 public class CompileSceneExerciseActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnDragListener {
 
     LinearLayout itemSelectorLayout;
@@ -101,25 +112,30 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
         itemSelectorLayout.setBackgroundColor(getResources().getColor(R.color.lightOrange));
     }
 
-
     protected void setupTargetViews() {
         int itemsCount = exercise.sceneItems[exerciseStep].length;
         for (int i = 0; i < itemsCount; i++) {
             for (int j = 0; j < exercise.sceneItems[exerciseStep][i].frames.length; j++) {
-                DARect frame = exercise.getFrameForStep(exerciseStep, i, j);
-                DAPoint location = frame.origin;
-                DASize size = frame.size;
-                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.intWidth(), size.intHeight());
-                layoutParams.leftMargin = location.intX();
-                layoutParams.topMargin = location.intY();
+                DARect frame = exercise.getTempFrameForStep(exerciseStep, i, j);
+                RelativeLayout.LayoutParams layoutParams = this.layoutParamsFromFrame(frame);
 
                 ImageView imageView = new ImageView(this);
                 imageView.setLayoutParams(layoutParams);
-                imageView.setTag(exercise.sceneItems[exerciseStep][i].name);
+                Tag tag = new Tag(exercise.sceneItems[exerciseStep][i].name, j);
+                imageView.setTag(tag);
                 imageView.setOnDragListener(this);
                 mainSceneLayout.addView(imageView);
             }
         }
+    }
+
+    protected RelativeLayout.LayoutParams layoutParamsFromFrame(DARect frame) {
+        DAPoint location = frame.origin;
+        DASize size = frame.size;
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(size.intWidth(), size.intHeight());
+        layoutParams.leftMargin = location.intX();
+        layoutParams.topMargin = location.intY();
+        return layoutParams;
     }
 
 
@@ -200,12 +216,18 @@ public class CompileSceneExerciseActivity extends AppCompatActivity implements V
             case DragEvent.ACTION_DROP:
                 ClipData.Item item = event.getClipData().getItemAt(0);
                 String name = item.getText().toString();
-                if ( name.equals(v.getTag()) ) {
+                Tag tag = (Tag) v.getTag();
+                if ( name.equals(tag.name) ) {
                     int itemsCount = this.exercise.sceneItems[exerciseStep].length;
                     for (int i = 0; i < itemsCount; i++) {
                         if (this.exercise.sceneItems[exerciseStep][i].name.equals(name)) {
-                            v.setTag(IMAGE_ALREADY_INSERTED_TAG);
+                            Tag newTag = new Tag(IMAGE_ALREADY_INSERTED_TAG, 0);
+                            v.setTag(newTag);
                             this.itemsInsertedOnCurrentStep++;
+                            int j = tag.index;
+                            DARect frame = exercise.getFrameForStep(exerciseStep, i, j);
+                            RelativeLayout.LayoutParams layoutParams = this.layoutParamsFromFrame(frame);
+                            imageView.setLayoutParams(layoutParams);
                             imageView.setImageDrawable(getDrawable(this.exercise.sceneItems[exerciseStep][i].drawable));
                         }
                     }

@@ -38,6 +38,16 @@ class CompileSceneExercise {
                             relativeFrame.height() * dy);
     }
 
+    public DARect getTempFrameForStep(int step, int sceneItem, int frameIndex) {
+        DARect relativeFrame = this.sceneItems[step][sceneItem].frames[frameIndex];
+        double dx = mainSceneSize.getWidth() / (double) normalizatorSize.getWidth();
+        double dy = mainSceneSize.getHeight() / (double) normalizatorSize.getHeight();
+        return new DARect(relativeFrame.x() * dx - relativeFrame.width() * dx / 2,
+                relativeFrame.y() * dy  - relativeFrame.height() * dy / 2,
+                2 * relativeFrame.width() * dx,
+                2 * relativeFrame.height() * dy);
+    }
+
     public Text getText() {
         return this.text;
     }
